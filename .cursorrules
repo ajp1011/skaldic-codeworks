@@ -1,0 +1,312 @@
+# Cursor Rules for Skaldic Codeworks - Laravel 12 + Vue 3 + Tailwind CSS
+
+## Project Overview
+This is a software development company website built with:
+- **Backend**: Laravel 12 with PHP 8.3+
+- **Frontend**: Vue 3 with Composition API + Tailwind CSS
+- **Testing**: PEST 4 for unit and feature tests
+- **Database**: MySQL
+- **Hosting**: AWS EC2
+- **Development**: Docker containerized environment
+
+## Core Development Principles
+
+### Architecture Patterns
+- **Primary Pattern**: Action Executor pattern wherever possible
+- **Avoid**: Service classes unless strictly necessary
+- **Follow**: DRY (Don't Repeat Yourself) and SOLID principles
+- **Testing**: All unit and feature tests must be fully built and passing
+
+### Code Style Guidelines
+- **Comments**: Keep to minimum, no emojis in comments or documentation
+- **Documentation**: Create doc headers for all functions within models and controllers
+- **Formatting**: Follow PSR-12 coding standards
+- **Type Hints**: Use strict typing with PHP 8.3+ features
+
+## Laravel 12 Specific Rules
+
+### Controllers
+- Use single-action controllers when possible
+- Implement Action Executor pattern for complex business logic
+- Always include doc headers for all methods
+- Use resource controllers for CRUD operations
+- Return JSON responses for API endpoints
+- Use Form Request classes for validation
+
+### Models
+- Use Eloquent models with proper relationships
+- Implement accessors and mutators when needed
+- Add doc headers for all methods
+- Use model factories for testing
+- Implement soft deletes when appropriate
+- Use model events sparingly
+
+### Actions (Action Executor Pattern)
+- Create dedicated Action classes for complex business logic
+- Actions should be single-purpose and testable
+- Use dependency injection for dependencies
+- Return consistent response objects
+- Include comprehensive doc headers
+
+### Database
+- Use migrations for all schema changes
+- Create seeders for development data
+- Use model factories for test data
+- Implement proper foreign key constraints
+- Use database transactions for complex operations
+- Use PHP enum classes instead of database enums for better type safety and maintainability
+
+### Routes
+- Use route model binding
+- Group related routes with middleware
+- Use named routes consistently
+- Implement API versioning if needed
+- Use route caching in production
+
+## Vue 3 Frontend Rules
+
+### Component Structure
+- Use Composition API with `<script setup>`
+- Create reusable components following single responsibility
+- Use TypeScript for type safety
+- Implement proper prop validation
+- Use composables for shared logic
+
+### State Management
+- Use Pinia for global state management
+- Keep component state local when possible
+- Use reactive refs and computed properties
+- Implement proper error handling
+
+### Styling
+- Use Tailwind CSS utility classes
+- Create custom components for repeated patterns
+- Use CSS custom properties for theming
+- Implement responsive design mobile-first
+- Use Tailwind's dark mode when appropriate
+
+### API Integration
+- Use Axios for HTTP requests
+- Implement proper error handling
+- Use loading states for async operations
+- Cache API responses when appropriate
+- Implement proper TypeScript interfaces
+
+## Testing with PEST 4
+
+### Test Structure
+- Write comprehensive unit tests for all models and actions
+- Create feature tests for all API endpoints
+- Use database transactions for test isolation
+- Mock external services and APIs
+- Test both success and failure scenarios
+
+### Test Organization
+- Group tests by functionality
+- Use descriptive test names
+- Implement proper setup and teardown
+- Use factories for test data
+- Test edge cases and error conditions
+
+### Coverage Requirements
+- Maintain 100% test coverage for critical business logic
+- Test all public methods
+- Include integration tests for complex workflows
+- Test API responses and error handling
+
+## Docker Development Environment
+
+### Container Configuration
+- Use multi-stage builds for optimization
+- Implement proper health checks
+- Use volume mounts for development
+- Configure proper networking between services
+- Use environment variables for configuration
+
+### Development Workflow
+- Use docker-compose for local development
+- Implement hot reloading for frontend
+- Use database migrations in containers
+- Configure proper logging
+- Use development-specific configurations
+
+## AWS EC2 Deployment
+
+### Server Configuration
+- Use Ubuntu LTS for EC2 instances
+- Implement proper security groups
+- Use RDS for MySQL database
+- Configure SSL certificates
+- Implement proper backup strategies
+
+### Application Deployment
+- Use Laravel Forge or similar for deployment
+- Implement CI/CD pipelines
+- Use environment-specific configurations
+- Implement proper logging and monitoring
+- Use CDN for static assets
+
+## File Organization
+
+### Backend Structure
+```
+app/
+├── Actions/           # Action Executor pattern classes
+├── Http/
+│   ├── Controllers/   # Single-action controllers
+│   ├── Requests/      # Form request validation
+│   └── Middleware/    # Custom middleware
+├── Models/            # Eloquent models
+├── Services/          # Only when absolutely necessary
+└── Support/           # Helper classes
+```
+
+### Frontend Structure
+```
+resources/
+├── js/
+│   ├── components/    # Vue components
+│   ├── composables/   # Vue composables
+│   ├── stores/        # Pinia stores
+│   ├── types/         # TypeScript interfaces
+│   └── utils/         # Utility functions
+└── css/
+    └── app.css        # Tailwind imports
+```
+
+## Code Quality Standards
+
+### PHP Standards
+- Follow PSR-12 coding standards
+- Use PHP 8.4+ features (enums, readonly properties, etc.)
+- Implement proper error handling
+- Use dependency injection
+- Write self-documenting code
+
+### JavaScript/TypeScript Standards
+- Use ESLint and Prettier
+- Follow Vue 3 best practices
+- Use TypeScript strict mode
+- Implement proper error boundaries
+- Use modern ES6+ features
+
+### Database Standards
+- Use proper indexing strategies
+- Implement database constraints
+- Use migrations for all changes
+- Optimize queries for performance
+- Use proper naming conventions
+
+## Security Considerations
+
+### Backend Security
+- Implement proper authentication and authorization
+- Use CSRF protection
+- Validate all input data
+- Implement rate limiting
+- Use secure session handling
+
+### Frontend Security
+- Sanitize user input
+- Implement proper XSS protection
+- Use HTTPS in production
+- Implement proper CORS policies
+- Validate data on both client and server
+
+## Performance Optimization
+
+### Backend Performance
+- Use database query optimization
+- Implement proper caching strategies
+- Use eager loading for relationships
+- Optimize API responses
+- Use background jobs for heavy operations
+
+### Frontend Performance
+- Implement code splitting
+- Use lazy loading for components
+- Optimize images and assets
+- Use proper caching headers
+- Minimize bundle size
+
+## Documentation Requirements
+
+### Code Documentation
+- Write doc headers for all functions
+- Document complex business logic
+- Include examples in documentation
+- Keep documentation up to date
+- Use clear and concise language
+
+### API Documentation
+- Document all API endpoints
+- Include request/response examples
+- Document error codes and messages
+- Use OpenAPI/Swagger when appropriate
+- Keep API documentation current
+
+## Git Workflow
+
+### Branch Strategy
+- Use feature branches for new features
+- Implement proper pull request reviews
+- Use conventional commit messages
+- Keep commits atomic and focused
+- Use proper branch protection rules
+
+### Code Review Process
+- All code must be reviewed before merging
+- Ensure tests pass before review
+- Check for security vulnerabilities
+- Verify performance implications
+- Maintain code quality standards
+
+## Environment Configuration
+
+### Development Environment
+- Use Docker for consistent environments
+- Configure proper environment variables
+- Use development-specific settings
+- Implement hot reloading
+- Use debug tools appropriately
+
+### Production Environment
+- Use environment-specific configurations
+- Implement proper logging
+- Use production-optimized settings
+- Configure monitoring and alerting
+- Implement proper backup strategies
+
+## Error Handling and Logging
+
+### Error Handling
+- Implement proper exception handling
+- Use custom exception classes
+- Log errors appropriately
+- Provide user-friendly error messages
+- Implement proper error recovery
+
+### Logging Strategy
+- Use structured logging
+- Log important business events
+- Implement proper log rotation
+- Use appropriate log levels
+- Monitor log files for issues
+
+## Monitoring and Maintenance
+
+### Application Monitoring
+- Implement health checks
+- Monitor performance metrics
+- Track error rates
+- Monitor database performance
+- Use proper alerting
+
+### Maintenance Tasks
+- Regular dependency updates
+- Database maintenance
+- Log file cleanup
+- Performance optimization
+- Security updates
+
+Remember: Always prioritize code quality, test coverage, and maintainability. Follow the Action Executor pattern, avoid unnecessary service classes, and ensure all tests are comprehensive and passing.
