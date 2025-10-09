@@ -12,7 +12,7 @@ services:
     volumes:
       - ./:/var/www
       - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
-    user: "1000:1000"
+    user: "developer:developer"
     networks:
       - skaldic-codeworks
 
@@ -45,12 +45,12 @@ services:
       - skaldic-codeworks
 
   node:
-    image: node:18-alpine
+    image: node:20-alpine
     container_name: skaldic-codeworks-node
     working_dir: /var/www
     volumes:
       - ./:/var/www
-    command: sh -c "npm run dev"
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
     ports:
       - "5173:5173"
     networks:

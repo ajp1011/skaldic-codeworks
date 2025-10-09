@@ -14,6 +14,10 @@ RUN apt-get update && apt-get install -y \
     npm \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
+# Create a user with UID 1000
+RUN groupadd -g 1000 developer && \
+    useradd -u 1000 -g developer -m -s /bin/bash developer
+
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -24,10 +28,10 @@ WORKDIR /var/www
 COPY . /var/www
 
 # Fix ownership and permissions (run as root)
-RUN chown -R www-data:www-data /var/www && \
+RUN chown -R developer:developer /var/www && \
     chmod -R 755 /var/www && \
     mkdir -p /var/www/.cache && \
-    chown -R www-data:www-data /var/www/.cache
+    chown -R developer:developer /var/www/.cache
 
 # Install Laravel if not already present
 RUN if [ ! -f composer.json ]; then \
