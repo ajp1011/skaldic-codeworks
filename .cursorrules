@@ -3,7 +3,8 @@
 ## Project Overview
 This is a software development company website built with:
 - **Backend**: Laravel 12 with PHP 8.3+
-- **Frontend**: Vue 3 with Composition API + Tailwind CSS
+- **Frontend**: Vue 3 with Composition API + Tailwind CSS v4
+- **Styling**: Native CSS (no preprocessors) + Tailwind v4
 - **Testing**: PEST 4 for unit and feature tests
 - **Database**: MySQL
 - **Hosting**: AWS EC2
@@ -79,11 +80,14 @@ This is a software development company website built with:
 - Implement proper error handling
 
 ### Styling
-- Use Tailwind CSS utility classes
-- Create custom components for repeated patterns
-- Use CSS custom properties for theming
+- Use Tailwind CSS v4 utility classes
+- Write custom styles in native CSS (NO preprocessors like SCSS/Sass)
+- Use CSS custom properties (variables) for theming
+- Import custom CSS files in app.css using @import
 - Implement responsive design mobile-first
-- Use Tailwind's dark mode when appropriate
+- Use Tailwind v4's native CSS processing
+- Create component-specific CSS files when needed
+- Use CSS modules (.module.css) for scoped styles if required
 
 ### API Integration
 - Use Axios for HTTP requests
@@ -171,8 +175,45 @@ resources/
 │   ├── types/         # TypeScript interfaces
 │   └── utils/         # Utility functions
 └── css/
-    └── app.css        # Tailwind imports
+    ├── app.css        # Main CSS file with Tailwind v4 import
+    └── *.css          # Custom CSS files (no preprocessors)
 ```
+
+## CSS and Tailwind v4 Guidelines
+
+### CSS Architecture
+- **NO preprocessors**: Do not use SCSS, Sass, Less, or any CSS preprocessors
+- **Native CSS only**: Write all custom styles in standard CSS
+- **CSS Custom Properties**: Use :root variables for theming and configuration
+- **Modular CSS**: Create separate CSS files for different components/features
+- **Import Strategy**: Use @import in app.css to include custom CSS files
+
+### Tailwind v4 Specific Rules
+- **Single Import**: Use `@import 'tailwindcss';` in app.css (v4 syntax)
+- **Content Detection**: Use @source directives instead of content arrays
+- **Vite Integration**: Leverage Tailwind v4's native Vite plugin
+- **CSS-First Config**: Configure Tailwind through CSS, not JS config files
+- **Performance**: Take advantage of v4's improved build performance
+
+### CSS File Organization
+```
+resources/css/
+├── app.css                    # Main file with Tailwind import
+├── nordic-minimalism.css      # Custom design system styles
+├── components/                # Component-specific styles
+│   ├── welcome.css
+│   └── navigation.css
+└── utilities/                 # Utility CSS classes
+    └── animations.css
+```
+
+### CSS Best Practices
+- Use semantic class names for custom components
+- Leverage Tailwind utilities for common patterns
+- Use CSS custom properties for dynamic theming
+- Implement responsive design with CSS media queries
+- Use CSS Grid and Flexbox for layouts
+- Optimize for performance with efficient selectors
 
 ## Code Quality Standards
 
