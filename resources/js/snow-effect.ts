@@ -3,6 +3,7 @@ class SnowEffect {
   private ctx: CanvasRenderingContext2D;
   private particles: SnowParticle[] = [];
   private animationId: number | null = null;
+  private resizeHandler: () => void;
 
   constructor(containerId: string) {
     const container = document.getElementById(containerId);
@@ -25,6 +26,8 @@ class SnowEffect {
     container.appendChild(this.canvas);
     this.ctx = this.canvas.getContext('2d')!;
 
+    this.resizeHandler = () => this.resizeCanvas();
+
     this.init();
   }
 
@@ -32,7 +35,7 @@ class SnowEffect {
     this.resizeCanvas();
     this.createParticles();
     this.animate();
-    window.addEventListener('resize', () => this.resizeCanvas());
+    window.addEventListener('resize', this.resizeHandler);
   }
 
   private resizeCanvas(): void {
@@ -42,11 +45,9 @@ class SnowEffect {
 
   private createParticles(): void {
     this.particles = [];
-    // Create a fixed number of particles
     const particleCount = 80;
     for (let i = 0; i < particleCount; i++) {
       const particle = this.createParticle();
-      // Spread particles across the screen initially for better distribution
       particle.y = Math.random() * window.innerHeight;
       this.particles.push(particle);
     }
@@ -55,7 +56,7 @@ class SnowEffect {
   private createParticle(): SnowParticle {
     return {
       x: Math.random() * window.innerWidth,
-      y: Math.random() * -100, // Start above the screen
+      y: Math.random() * -100,
       size: Math.random() * 3 + 1,
       speed: Math.random() * 2 + 0.5,
       opacity: Math.random() * 0.8 + 0.2,
@@ -153,7 +154,7 @@ class SnowEffect {
     if (this.animationId) {
       cancelAnimationFrame(this.animationId);
     }
-    window.removeEventListener('resize', () => this.resizeCanvas());
+    window.removeEventListener('resize', this.resizeHandler);
     this.canvas.remove();
   }
 }
