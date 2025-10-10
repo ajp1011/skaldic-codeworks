@@ -136,6 +136,141 @@ html, body, #app, .min-h-screen, .bg-gray-100 {
     border-radius: 1px;
 }
 
+/* Button Styles */
+.auth-button-container {
+    margin-top: 2rem;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.nordic-button {
+    display: inline-block;
+    padding: 0.875rem 2.5rem;
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--off-white);
+    background: linear-gradient(135deg, var(--slate-gray) 0%, var(--deep-charcoal) 100%);
+    border: 1px solid var(--icy-blue);
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 30%), inset 0 1px 1px rgb(129 199 212 / 10%);
+    letter-spacing: 0.02em;
+}
+
+button.nordic-button {
+    appearance: none;
+}
+
+.nordic-button:hover {
+    background: linear-gradient(135deg, var(--icy-blue) 0%, #5fa8b5 100%);
+    border-color: var(--off-white);
+    box-shadow: 0 6px 12px rgb(0 0 0 / 40%), 0 0 20px rgb(129 199 212 / 30%);
+    transform: translateY(-2px);
+}
+
+.nordic-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgb(0 0 0 / 30%);
+}
+
+.nordic-button-full {
+    width: 100%;
+}
+
+/* Form Styles */
+.auth-form {
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    font-family: var(--font-secondary);
+    font-size: 0.925rem;
+    font-weight: 500;
+    color: var(--off-white);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.01em;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    color: var(--off-white);
+    background: var(--deep-charcoal);
+    border: 1px solid rgb(129 199 212 / 30%);
+    border-radius: 6px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: var(--icy-blue);
+    box-shadow: 0 0 0 3px rgb(129 199 212 / 20%);
+}
+
+.form-input.input-error {
+    border-color: #ef4444;
+}
+
+.error-message {
+    margin-top: 0.5rem;
+    font-family: var(--font-secondary);
+    font-size: 0.875rem;
+    color: #ef4444;
+}
+
+.form-group-checkbox {
+    margin-bottom: 1.5rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    font-family: var(--font-secondary);
+    font-size: 0.925rem;
+    color: var(--metallic-silver);
+    cursor: pointer;
+}
+
+.form-checkbox {
+    width: 1.125rem;
+    height: 1.125rem;
+    margin-right: 0.625rem;
+    cursor: pointer;
+    accent-color: var(--icy-blue);
+}
+
+.form-actions {
+    margin-top: 2rem;
+}
+
+.form-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.link-secondary {
+    font-family: var(--font-secondary);
+    font-size: 0.925rem;
+    color: var(--icy-blue);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.link-secondary:hover {
+    color: var(--off-white);
+    text-decoration: underline;
+}
+
 /* Responsive Design */
 @media (width <= 640px) {
     .container {
@@ -148,6 +283,11 @@ html, body, #app, .min-h-screen, .bg-gray-100 {
     
     .company-name {
         font-size: 2rem;
+    }
+
+    .nordic-button {
+        padding: 0.75rem 2rem;
+        font-size: 0.925rem;
     }
 }
 
