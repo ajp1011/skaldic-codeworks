@@ -36,3 +36,7 @@ const incrementCounter = () => {
 };
 </script>
 
+<style scoped>
+/* Component-specific styles can go here */
+</style>
+
