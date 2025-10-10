@@ -1,6 +1,6 @@
-# Skaldic Codeworks Portfolio
+# Skaldic Codeworks
 
-A modern portfolio website built with Laravel 12, Vue.js, TypeScript, and Tailwind CSS.
+A modern software development company and portfolio website built with Laravel 12, Vue.js, TypeScript, and Tailwind CSS.
 
 ## Tech Stack
 
@@ -81,4 +81,9 @@ docker-compose exec app php artisan db:seed
 
 ## License
 
-This project is open-sourced software licensed under the [MIT license](LICENSE).
+This project is proprietary and confidential software. All rights reserved.
+
+Copyright (c) 2025 Skaldic Codeworks, LLC. 
+
+Unauthorized copying, modification, distribution, or use of this software is strictly prohibited. 
+See the [LICENSE](LICENSE) file for details.

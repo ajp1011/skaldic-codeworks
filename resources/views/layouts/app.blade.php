@@ -11,6 +11,11 @@
 <body>
     @stack('body-start')
     @yield('content')
+    
+    <footer class="site-footer">
+        <p>&copy; {{ date('Y') }} Skaldic Codeworks, LLC. All rights reserved.</p>
+    </footer>
+    
     @stack('scripts')
 </body>
 </html>
