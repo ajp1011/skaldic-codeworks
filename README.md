@@ -24,7 +24,7 @@ A modern software development company and portfolio website built with Laravel 1
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/skaldic-codeworks.git
+   git clone https://github.com/ajp1011/skaldic-codeworks.git
    cd skaldic-codeworks
    ```
 
