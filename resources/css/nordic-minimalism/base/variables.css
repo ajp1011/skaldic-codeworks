@@ -1,0 +1,51 @@
+/* Nordic Minimalism - CSS Variables */
+:root {
+    /* Colors */
+    --deep-charcoal: #1a1a1a;
+    --slate-gray: #2d3748;
+    --off-white: #f7fafc;
+    --icy-blue: #81c7d4;
+    --metallic-silver: #a0aec0;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, var(--deep-charcoal) 0%, var(--slate-gray) 100%);
+    --gradient-accent: linear-gradient(135deg, var(--icy-blue) 0%, #5fa8b5 100%);
+    --gradient-green: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    --gradient-purple: linear-gradient(135deg, #9f7aea 0%, #805ad5 100%);
+    --gradient-red: linear-gradient(135deg, #8b2e2e 0%, #5c1f1f 100%);
+    
+    /* Borders */
+    --border-primary: 1px solid rgb(129 199 212 / 20%);
+    --border-accent: 1px solid rgb(129 199 212 / 30%);
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 6px rgb(0 0 0 / 30%);
+    --shadow-md: 0 4px 12px rgb(0 0 0 / 40%);
+    --shadow-lg: 0 8px 24px rgb(0 0 0 / 50%);
+    --shadow-glow: 0 0 20px rgb(129 199 212 / 30%);
+    
+    /* Border Radius */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-full: 50%;
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    
+    /* Typography */
+    --font-primary: 'Montserrat Alternates', sans-serif;
+    --font-secondary: 'Raleway', sans-serif;
+    --font-accent: 'Josefin Sans', sans-serif;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+

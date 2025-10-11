@@ -1,0 +1,38 @@
+/* Navigation Components */
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 0.875rem var(--spacing-md);
+    margin-bottom: var(--spacing-xs);
+    font-family: var(--font-secondary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--metallic-silver);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.nav-item:hover {
+    color: var(--off-white);
+    background: rgb(129 199 212 / 10%);
+    border-color: rgb(129 199 212 / 20%);
+}
+
+.nav-item-active {
+    color: var(--off-white);
+    background: var(--gradient-accent);
+    border-color: var(--icy-blue);
+    box-shadow: 0 4px 12px rgb(129 199 212 / 30%);
+}
+
+.nav-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+    stroke-width: 2;
+}
+

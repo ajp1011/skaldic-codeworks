@@ -1,0 +1,135 @@
+/* Button Components */
+.nordic-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 2.5rem;
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--off-white);
+    background: var(--gradient-primary);
+    border: 1px solid var(--icy-blue);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-sm), inset 0 1px 1px rgb(129 199 212 / 10%);
+    letter-spacing: 0.02em;
+}
+
+button.nordic-button {
+    appearance: none;
+}
+
+.nordic-button:hover {
+    background: var(--gradient-accent);
+    border-color: var(--off-white);
+    box-shadow: 0 6px 12px rgb(0 0 0 / 40%), var(--shadow-glow);
+    transform: translateY(-2px);
+}
+
+.nordic-button:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+.nordic-button-full {
+    width: 100%;
+}
+
+/* Logout Button Variant */
+.logout-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem var(--spacing-md);
+    font-family: var(--font-secondary);
+    font-size: 0.925rem;
+    font-weight: 500;
+    color: var(--off-white);
+    background: var(--gradient-red);
+    border: 1px solid #ef4444;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-sm);
+}
+
+.logout-button:hover {
+    background: linear-gradient(135deg, #a73636 0%, #712626 100%);
+    box-shadow: 0 4px 12px rgb(239 68 68 / 30%);
+    transform: translateY(-1px);
+}
+
+.logout-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+    margin-right: var(--spacing-xs);
+    stroke-width: 2;
+}
+
+/* Action Buttons */
+.action-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0.875rem var(--spacing-md);
+    margin-bottom: 0.75rem;
+    font-family: var(--font-secondary);
+    font-size: 0.925rem;
+    font-weight: 500;
+    color: var(--off-white);
+    background: var(--gradient-primary);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-sm);
+}
+
+.action-button:last-child {
+    margin-bottom: 0;
+}
+
+.action-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.action-button-blue {
+    border-color: var(--icy-blue);
+}
+
+.action-button-blue:hover {
+    background: var(--gradient-accent);
+    box-shadow: 0 4px 12px rgb(129 199 212 / 40%);
+}
+
+.action-button-green {
+    border-color: #48bb78;
+}
+
+.action-button-green:hover {
+    background: var(--gradient-green);
+    box-shadow: 0 4px 12px rgb(72 187 120 / 40%);
+}
+
+.action-button-purple {
+    border-color: #9f7aea;
+}
+
+.action-button-purple:hover {
+    background: var(--gradient-purple);
+    box-shadow: 0 4px 12px rgb(159 122 234 / 40%);
+}
+
+.action-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+    stroke-width: 2;
+}
+
