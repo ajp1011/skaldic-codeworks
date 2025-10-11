@@ -30,7 +30,7 @@ describe('Login Authentication Process', function () {
                 'password' => 'password123',
             ]);
 
-            $response->assertRedirect(route('home'));
+            $response->assertRedirect(route('dashboard'));
             $this->assertAuthenticated();
             $this->assertAuthenticatedAs($user);
         });
@@ -47,7 +47,7 @@ describe('Login Authentication Process', function () {
                 'remember' => true,
             ]);
 
-            $response->assertRedirect(route('home'));
+            $response->assertRedirect(route('dashboard'));
             $this->assertAuthenticated();
             $this->assertAuthenticatedAs($user);
         });
@@ -66,7 +66,7 @@ describe('Login Authentication Process', function () {
                 'password' => 'password123',
             ]);
 
-            $response->assertRedirect(route('home'));
+            $response->assertRedirect(route('dashboard'));
             $this->assertAuthenticated();
 
             $newSessionId = session()->getId();
@@ -269,7 +269,7 @@ describe('Login Authentication Process', function () {
                     'password' => 'password123',
                 ]);
 
-            $response->assertRedirect(route('home'));
+            $response->assertRedirect(route('dashboard'));
             $this->assertAuthenticated();
         });
 

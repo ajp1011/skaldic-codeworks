@@ -47,7 +47,7 @@ class LoginController extends Controller
             $request->boolean('remember')
         );
 
-        return redirect()->intended(route('home'));
+        return redirect()->intended(route('dashboard'));
     }
 
     /**
