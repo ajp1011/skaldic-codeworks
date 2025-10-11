@@ -2,7 +2,7 @@
 
 A modern software development company and portfolio website built with Laravel 12, Vue.js, TypeScript, and Tailwind CSS.
 
-> 🚀 **Open Source Portfolio** - This repository showcases professional web development practices and modern full-stack architecture. Feel free to explore the code, and if you're hiring or need development services, [get in touch](mailto:ajp1011@gmail.com)!
+> **Open Source Portfolio** - This repository showcases professional web development practices and modern full-stack architecture. Feel free to explore the code, and if you're hiring or need development services, [get in touch](mailto:ajp1011@gmail.com)!
 
 ## Tech Stack
 
@@ -109,14 +109,14 @@ docker-compose exec app ./vendor/bin/phpstan analyse
 
 ## Features
 
-- 🚀 **Modern PHP 8.4** with latest language features
-- ⚡ **Vue.js 3** with Composition API and TypeScript
-- 🎨 **Tailwind CSS** for utility-first styling
-- 🧪 **PEST 4** for elegant testing
-- 🐳 **Docker** for consistent development environment
-- 📱 **Responsive design** for all devices
-- ✨ **Vite HMR** for instant development feedback
-- 🔒 **Laravel best practices** for security and performance
+- **Modern PHP 8.4** with latest language features
+- **Vue.js 3** with Composition API and TypeScript
+- **Tailwind CSS** for utility-first styling
+- **PEST 4** for elegant testing
+- **Docker** for consistent development environment
+- **Responsive design** for all devices
+- **Vite HMR** for instant development feedback
+- **Laravel best practices** for security and performance
 
 ## About
 

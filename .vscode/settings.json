@@ -1,24 +1,5 @@
 {
-  "css.validate": false,
-  "scss.validate": false,
-  "less.validate": false,
-  "stylelint.enable": true,
-  "css.lint.unknownAtRules": "ignore",
-  "css.lint.unknownProperties": "ignore",
-  "css.lint.unknownVendorSpecificProperties": "ignore",
-  "files.associations": {
-    "*.css": "tailwindcss"
-  },
-  "tailwindCSS.includeLanguages": {
-    "blade": "html"
-  },
-  "tailwindCSS.experimental.classRegex": [
-    ["class[:]\\s*['\"`]([^'\"`]*)['\"`]", "['\"`]([^'\"`]*)['\"`]"]
-  ],
-  "emmet.includeLanguages": {
-    "blade": "html"
-  },
-  "[css]": {
-    "editor.defaultFormatter": "stylelint.vscode-stylelint"
-  }
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "typescript.suggest.autoImports": true,
+  "typescript.tsdk": "./node_modules/typescript/lib"
 }
