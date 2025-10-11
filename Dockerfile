@@ -14,6 +14,10 @@ RUN apt-get update && apt-get install -y \
     npm \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
+# Install PCOV for code coverage (faster than Xdebug)
+RUN pecl install pcov \
+    && docker-php-ext-enable pcov
+
 # Create a user with UID 1000
 RUN groupadd -g 1000 developer && \
     useradd -u 1000 -g developer -m -s /bin/bash developer
