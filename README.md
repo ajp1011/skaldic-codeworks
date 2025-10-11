@@ -30,7 +30,7 @@ A modern software development company and portfolio website built with Laravel 1
 
 2. **Copy environment file**
    ```bash
-   cp env.example .env
+   cp .env.example .env
    ```
 
 3. **Start the development environment**
