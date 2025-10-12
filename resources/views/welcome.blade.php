@@ -3,7 +3,11 @@
 @section('title', 'Welcome - ' . config('app.name'))
 
 @push('body-start')
-    <div id="snow-container"></div>
+    @if($currentTheme === 'forgecraft')
+        <div id="spark-container"></div>
+    @else
+        <div id="snow-container"></div>
+    @endif
 @endpush
 
 @section('content')

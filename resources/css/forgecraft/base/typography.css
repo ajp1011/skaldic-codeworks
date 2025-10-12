@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo:wght@300;400;500;600;700;800&family=Rajdhani:wght@300;400;500;600;700&display=swap');
 
-/* Typography */
+/* Typography - Forgecraft Modern */
 
 /* Base reset and global styles */
 * {
@@ -13,7 +13,7 @@ html, body {
     font-family: var(--font-primary) !important;
     background: #000 !important;
     min-height: 100vh !important;
-    color: var(--off-white) !important;
+    color: var(--forge-white) !important;
     line-height: 1.6 !important;
     margin: 0 !important;
     padding: 0 !important;

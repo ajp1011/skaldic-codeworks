@@ -27,6 +27,7 @@ class User extends Authenticatable
         'email',
         'password',
         'user_type',
+        'theme',
     ];
 
     /**
@@ -50,6 +51,7 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'user_type' => UserType::class,
+            'theme' => \App\Enums\Theme::class,
         ];
     }
 
@@ -104,5 +106,15 @@ class User extends Authenticatable
             $this->user_type,
             [UserType::SUPER_ADMINISTRATOR, UserType::ADMINISTRATOR]
         );
+    }
+
+    /**
+     * Get the theme slug for the user.
+     *
+     * @return string
+     */
+    public function getThemeSlug(): string
+    {
+        return $this->theme->slug();
     }
 }

@@ -5,12 +5,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>@yield('title', config('app.name', 'Laravel'))</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
-        @vite(['resources/css/app.css', 'resources/js/app.ts'])
+        @if($currentTheme === 'forgecraft')
+            @vite(['resources/css/themes/forgecraft.css', 'resources/js/app.ts'])
+        @else
+            @vite(['resources/css/themes/nordic-minimalism.css', 'resources/js/app.ts'])
+        @endif
         @stack('styles')
     </head>
 <body>
     @stack('body-start')
-    <div id="snow-container"></div>
+    @if($currentTheme === 'forgecraft')
+        <div id="spark-container"></div>
+    @else
+        <div id="snow-container"></div>
+    @endif
     
     <div class="dashboard-layout">
         <aside class="dashboard-sidebar">

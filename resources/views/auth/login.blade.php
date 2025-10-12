@@ -3,7 +3,11 @@
 @section('title', 'Login - ' . config('app.name'))
 
 @push('body-start')
-    <div id="snow-container"></div>
+    @if($currentTheme === 'forgecraft')
+        <div id="spark-container"></div>
+    @else
+        <div id="snow-container"></div>
+    @endif
 @endpush
 
 @section('content')
@@ -17,8 +21,6 @@
             
             <form method="POST" action="{{ route('login.store') }}" class="auth-form">
                 @csrf
-                
-                <!-- Email Address -->
                 <div class="form-group">
                     <label for="email" class="form-label">Email</label>
                     <input 
@@ -34,8 +36,6 @@
                         <p class="error-message">{{ $message }}</p>
                     @enderror
                 </div>
-
-                <!-- Password -->
                 <div class="form-group">
                     <label for="password" class="form-label">Password</label>
                     <input 
@@ -49,8 +49,6 @@
                         <p class="error-message">{{ $message }}</p>
                     @enderror
                 </div>
-
-                <!-- Remember Me -->
                 <div class="form-group-checkbox">
                     <label for="remember" class="checkbox-label">
                         <input 
@@ -63,15 +61,11 @@
                         <span>Remember me</span>
                     </label>
                 </div>
-
-                <!-- Submit Button -->
                 <div class="form-actions">
                     <button type="submit" class="nordic-button nordic-button-full">
                         Login
                     </button>
                 </div>
-
-                <!-- Back to Home Link -->
                 <div class="form-footer">
                     <a href="{{ route('home') }}" class="link-secondary">Back to Home</a>
                 </div>

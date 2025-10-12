@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 use App\Enums\UserType;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+uses(RefreshDatabase::class);
 
 test('is super administrator returns true for super admin user type', function () {
     $user = new User();
@@ -128,7 +131,8 @@ test('fillable attributes include expected fields', function () {
     expect($fillable)->toContain('name')
         ->toContain('email')
         ->toContain('password')
-        ->toContain('user_type');
+        ->toContain('user_type')
+        ->toContain('theme');
 });
 
 test('hidden attributes include password and remember token', function () {
@@ -158,4 +162,26 @@ test('casts include user type as UserType enum', function () {
     $casts = $user->getCasts();
 
     expect($casts)->toHaveKey('user_type', UserType::class);
+});
+
+test('casts include theme as Theme enum', function () {
+    $user = new User();
+    $casts = $user->getCasts();
+
+    expect($casts)->toHaveKey('theme', \App\Enums\Theme::class);
+});
+
+test('get theme slug returns correct slug', function () {
+    $user = User::factory()->create([
+        'theme' => \App\Enums\Theme::FORGECRAFT_MODERN,
+    ]);
+
+    expect($user->getThemeSlug())->toBe('forgecraft');
+});
+
+test('default theme is nordic minimalism', function () {
+    $user = User::factory()->create();
+
+    expect($user->theme)->toBe(\App\Enums\Theme::NORDIC_MINIMALISM)
+        ->and($user->getThemeSlug())->toBe('nordic-minimalism');
 });

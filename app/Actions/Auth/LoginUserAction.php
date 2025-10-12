@@ -22,6 +22,11 @@ class LoginUserAction
         if (Auth::attempt($credentials, $remember)) {
             request()->session()->regenerate();
 
+            $user = Auth::user();
+            $themeSlug = $user->getThemeSlug();
+
+            cookie()->queue('theme', $themeSlug, 525600);
+
             return true;
         }
 
