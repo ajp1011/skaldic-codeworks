@@ -1,0 +1,224 @@
+/* Resume/About Page Layout - Forgecraft Modern */
+
+.resume-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: var(--gradient-primary);
+    border: 2px solid var(--ember-orange);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-2xl) 2.5rem;
+    box-shadow: var(--shadow-lg), var(--shadow-glow-orange);
+    line-height: 1.7;
+    animation: fadeInUp 0.7s ease-out;
+}
+
+.resume-header {
+    text-align: center;
+    padding-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    border-bottom: 2px solid var(--ember-orange);
+}
+
+.resume-name {
+    font-family: var(--font-accent);
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--forge-white);
+    text-shadow: 0 2px 8px rgb(0 0 0 / 50%), 0 0 20px rgb(255 107 53 / 30%);
+    margin: 0 0 0.75rem;
+}
+
+.resume-title {
+    font-family: var(--font-secondary);
+    font-size: 1.125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ember-orange);
+    margin: 0 0 var(--spacing-md);
+}
+
+.resume-contact {
+    font-family: var(--font-secondary);
+    font-size: 0.925rem;
+    color: var(--cool-gray);
+    margin: 0 0 var(--spacing-lg);
+}
+
+.contact-link {
+    color: var(--ember-orange);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color var(--transition-base);
+}
+
+.contact-link:hover {
+    color: var(--forge-white);
+    text-decoration: underline;
+}
+
+/* Reveal trigger styling */
+.reveal-trigger {
+    color: var(--ember-orange);
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: color var(--transition-base);
+}
+
+.reveal-trigger:hover {
+    color: var(--forge-white);
+}
+
+.resume-download {
+    margin-top: var(--spacing-lg);
+}
+
+.download-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: var(--spacing-xs);
+    stroke-width: 2.5;
+}
+
+.resume-section {
+    margin-bottom: 2.5rem;
+}
+
+.resume-section:last-child {
+    margin-bottom: 0;
+}
+
+.section-title {
+    font-family: var(--font-accent);
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--forge-white);
+    margin: 0 0 var(--spacing-md);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 2px solid var(--ember-orange);
+    text-shadow: 0 1px 4px rgb(0 0 0 / 30%);
+}
+
+.resume-section p {
+    font-family: var(--font-secondary);
+    font-size: 0.975rem;
+    color: var(--forge-white);
+    line-height: 1.8;
+    margin: 0;
+}
+
+.competencies-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.competencies-list li {
+    font-family: var(--font-secondary);
+    font-size: 0.975rem;
+    color: var(--forge-white);
+    margin-bottom: 0.875rem;
+    padding-left: var(--spacing-lg);
+    position: relative;
+    line-height: 1.8;
+}
+
+.competencies-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.65rem;
+    width: 0;
+    height: 0;
+    border-left: 6px solid var(--ember-orange);
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    box-shadow: 0 0 8px var(--ember-orange);
+}
+
+.competencies-list li strong {
+    color: var(--ember-orange);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.experience-item {
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--iron-gray);
+}
+
+.experience-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.experience-title {
+    font-family: var(--font-secondary);
+    font-size: 1.125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--forge-white);
+    margin: 0 0 var(--spacing-xs);
+}
+
+.experience-date {
+    font-family: var(--font-secondary);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--steel-blue);
+    margin: 0 0 0.75rem;
+}
+
+.experience-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.experience-list li {
+    font-family: var(--font-secondary);
+    font-size: 0.925rem;
+    color: var(--forge-white);
+    margin-bottom: 0.625rem;
+    padding-left: var(--spacing-lg);
+    position: relative;
+    line-height: 1.7;
+}
+
+.experience-list li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--ember-orange);
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.education-degree {
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--forge-white);
+    margin: 0 0 var(--spacing-xs);
+}
+
+.education-school {
+    font-family: var(--font-secondary);
+    font-size: 0.925rem;
+    color: var(--cool-gray);
+    margin: 0;
+}
+

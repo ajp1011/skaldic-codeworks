@@ -1,0 +1,190 @@
+/* Card Components - Forgecraft Modern */
+
+.card {
+    background: var(--gradient-primary);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--ember-orange);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-2xl) var(--spacing-xl);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: var(--shadow-lg), 0 0 0 1px rgb(255 107 53 / 15%);
+    animation: scaleIn 0.6s ease-out;
+    position: relative;
+    z-index: 3;
+}
+
+/* Welcome Card */
+.welcome-card {
+    grid-column: 1 / -1;
+    background: var(--gradient-accent);
+    border: 2px solid var(--molten-red);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-lg), var(--shadow-glow-orange);
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.welcome-title {
+    font-family: var(--font-accent);
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--forge-white);
+    margin: 0 0 var(--spacing-xs);
+    text-shadow: 0 2px 8px rgb(0 0 0 / 50%);
+}
+
+.welcome-subtitle {
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    color: rgb(245 245 245 / 90%);
+    margin: 0;
+}
+
+/* Stat Cards */
+.stat-card {
+    background: var(--gradient-primary);
+    border: 2px solid var(--iron-gray);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+    animation: fadeInUp 0.5s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--ember-orange), transparent);
+    transition: left 0.5s ease;
+}
+
+.stat-card:hover::before {
+    left: 100%;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 60%), var(--shadow-glow-orange);
+    border-color: var(--ember-orange);
+}
+
+.stat-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.stat-info {
+    flex: 1;
+}
+
+.stat-label {
+    font-family: var(--font-secondary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--cool-gray);
+    margin: 0 0 var(--spacing-xs);
+}
+
+.stat-value {
+    font-family: var(--font-accent);
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--forge-white);
+    margin: 0;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 8px rgb(0 0 0 / 50%);
+}
+
+.stat-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem;
+    box-shadow: var(--shadow-sm);
+    border: 2px solid;
+}
+
+.stat-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke-width: 2.5;
+}
+
+.stat-icon-blue {
+    background: var(--gradient-steel);
+    border-color: var(--steel-blue);
+    color: var(--forge-white);
+    box-shadow: var(--shadow-glow-blue);
+}
+
+.stat-icon-green {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    border-color: #38a169;
+    color: var(--forge-white);
+}
+
+.stat-icon-purple {
+    background: var(--gradient-accent);
+    border-color: var(--ember-orange);
+    color: var(--forge-white);
+    box-shadow: var(--shadow-glow-orange);
+}
+
+/* Activity Card */
+.activity-card {
+    grid-column: span 2;
+    background: var(--gradient-primary);
+    border: 2px solid var(--iron-gray);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    animation: fadeInUp 0.7s ease-out;
+}
+
+.activity-card:hover {
+    border-color: var(--ember-orange);
+}
+
+/* Actions Card */
+.actions-card {
+    background: var(--gradient-primary);
+    border: 2px solid var(--iron-gray);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    animation: fadeInUp 0.7s ease-out;
+}
+
+.actions-card:hover {
+    border-color: var(--steel-blue);
+}
+
+.card-header {
+    padding: var(--spacing-lg);
+    border-bottom: 2px solid var(--iron-gray);
+}
+
+.card-title {
+    font-family: var(--font-accent);
+    font-size: 1.125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--forge-white);
+    margin: 0;
+}
+

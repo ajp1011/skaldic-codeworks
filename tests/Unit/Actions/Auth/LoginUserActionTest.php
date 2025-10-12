@@ -19,6 +19,10 @@ test('successfully logs in user with valid credentials', function () {
         'password' => 'password123',
     ];
 
+    // Mock user with theme
+    $user = \Mockery::mock(\App\Models\User::class);
+    $user->shouldReceive('getThemeSlug')->once()->andReturn('nordic-minimalism');
+
     // Mock the session
     $session = mock(Store::class);
     $session->shouldReceive('regenerate')->once();
@@ -36,6 +40,10 @@ test('successfully logs in user with valid credentials', function () {
         ->with($credentials, false)
         ->andReturn(true);
 
+    Auth::shouldReceive('user')
+        ->once()
+        ->andReturn($user);
+
     // Act
     $result = $this->action->execute($credentials);
 
@@ -49,6 +57,10 @@ test('successfully logs in user with remember me option', function () {
         'email' => 'test@example.com',
         'password' => 'password123',
     ];
+
+    // Mock user with theme
+    $user = \Mockery::mock(\App\Models\User::class);
+    $user->shouldReceive('getThemeSlug')->once()->andReturn('nordic-minimalism');
 
     // Mock the session
     $session = mock(Store::class);
@@ -66,6 +78,10 @@ test('successfully logs in user with remember me option', function () {
         ->once()
         ->with($credentials, true)
         ->andReturn(true);
+
+    Auth::shouldReceive('user')
+        ->once()
+        ->andReturn($user);
 
     // Act
     $result = $this->action->execute($credentials, true);
