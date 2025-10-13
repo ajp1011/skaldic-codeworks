@@ -138,7 +138,8 @@ Unattended-Upgrade::Automatic-Reboot "false";' | sudo tee /etc/apt/apt.conf.d/20
 # Create application directory
 echo "Creating application directory..."
 sudo mkdir -p /var/www
-sudo chown -R deploy:deploy /var/www
+sudo chown -R ubuntu:ubuntu /var/www
+echo "✓ Application directory created with correct ownership"
 
 # Configure log rotation
 echo "Configuring log rotation..."
