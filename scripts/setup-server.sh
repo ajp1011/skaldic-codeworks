@@ -24,8 +24,17 @@ sudo apt-get install -y \
     ufw \
     fail2ban \
     unattended-upgrades \
-    awscli \
+    unzip \
     gpg
+
+# Install AWS CLI v2
+echo "Installing AWS CLI v2..."
+cd /tmp
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip -q awscliv2.zip
+sudo ./aws/install
+rm -rf aws awscliv2.zip
+cd -
 
 # Install Docker
 echo "Installing Docker..."
