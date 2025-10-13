@@ -1,0 +1,36 @@
+[mysqld]
+# Performance tuning for t3.micro (1 GB RAM)
+# Conservative settings to avoid OOM
+
+# InnoDB settings
+innodb_buffer_pool_size = 256M
+innodb_log_file_size = 64M
+innodb_flush_log_at_trx_commit = 2
+innodb_flush_method = O_DIRECT
+
+# Connection settings
+max_connections = 50
+max_allowed_packet = 64M
+
+# Query cache (disabled in MySQL 8.0)
+# query_cache_type = 0
+# query_cache_size = 0
+
+# Logging
+slow_query_log = 1
+slow_query_log_file = /var/log/mysql/slow-query.log
+long_query_time = 2
+
+# Character set
+character-set-server = utf8mb4
+collation-server = utf8mb4_unicode_ci
+
+# Security
+local_infile = 0
+
+# Binary logging (disabled for single-server setup)
+skip-log-bin
+
+[client]
+default-character-set = utf8mb4
+

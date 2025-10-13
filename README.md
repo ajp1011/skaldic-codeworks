@@ -86,9 +86,6 @@ docker-compose exec app php artisan migrate:fresh --seed
 ```bash
 # Run Laravel Pint (code formatting)
 docker-compose exec app ./vendor/bin/pint
-
-# Run PHPStan (static analysis)
-docker-compose exec app ./vendor/bin/phpstan analyse
 ```
 
 ## Project Structure
@@ -96,9 +93,9 @@ docker-compose exec app ./vendor/bin/phpstan analyse
 ```
 ├── app/                    # Laravel application logic
 ├── resources/              # Views, Vue components, assets
-│   ├── js/                # TypeScript/Vue files
-│   ├── css/               # Stylesheets
-│   └── views/             # Blade templates
+│   ├── js/                 # TypeScript/Vue files
+│   ├── css/                # Stylesheets
+│   └── views/              # Blade templates
 ├── public/                 # Web-accessible files
 ├── docker/                 # Docker configuration
 ├── tests/                  # PEST test files
@@ -127,6 +124,15 @@ This project serves as both the company website for Skaldic Codeworks and a demo
 - Comprehensive testing strategies
 - Docker-based development workflow
 - Modern CI/CD readiness
+
+## Development Workflow
+
+This project uses a simplified Gitflow branching strategy:
+- **`main`**: Production branch - deployments trigger on push
+- **`develop`**: Integration branch - default branch for development
+- **`feature/*`**: New features - branch from and merge to `develop`
+- **`breakfix/*`**: Bug fixes - branch from and merge to `develop`
+- **`release/*`**: Release preparation - branch from `develop`, merge to `main`
 
 ## Contact
 
