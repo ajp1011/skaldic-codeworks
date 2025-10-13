@@ -29,35 +29,43 @@ sudo apt-get install -y \
 
 # Install AWS CLI v2
 echo "Installing AWS CLI v2..."
-TEMP_DIR=$(mktemp -d)
-cd "$TEMP_DIR"
-if curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"; then
-    unzip -q awscliv2.zip
-    sudo ./aws/install
-    cd -
-    rm -rf "$TEMP_DIR"
-    echo "✓ AWS CLI installed successfully"
+if command -v aws &> /dev/null; then
+    echo "✓ AWS CLI already installed ($(aws --version))"
 else
-    echo "✗ Failed to download AWS CLI"
-    cd -
-    rm -rf "$TEMP_DIR"
-    exit 1
+    TEMP_DIR=$(mktemp -d)
+    cd "$TEMP_DIR"
+    if curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"; then
+        unzip -q awscliv2.zip
+        sudo ./aws/install
+        cd -
+        rm -rf "$TEMP_DIR"
+        echo "✓ AWS CLI installed successfully"
+    else
+        echo "✗ Failed to download AWS CLI"
+        cd -
+        rm -rf "$TEMP_DIR"
+        exit 1
+    fi
 fi
 
 # Install Docker
 echo "Installing Docker..."
-if curl -fsSL https://get.docker.com -o get-docker.sh; then
-    if sudo sh get-docker.sh; then
-        rm get-docker.sh
-        echo "✓ Docker installed successfully"
+if command -v docker &> /dev/null; then
+    echo "✓ Docker already installed ($(docker --version))"
+else
+    if curl -fsSL https://get.docker.com -o get-docker.sh; then
+        if sudo sh get-docker.sh; then
+            rm get-docker.sh
+            echo "✓ Docker installed successfully"
+        else
+            echo "✗ Docker installation failed"
+            rm get-docker.sh
+            exit 1
+        fi
     else
-        echo "✗ Docker installation failed"
-        rm get-docker.sh
+        echo "✗ Failed to download Docker install script"
         exit 1
     fi
-else
-    echo "✗ Failed to download Docker install script"
-    exit 1
 fi
 
 # Start and enable Docker
