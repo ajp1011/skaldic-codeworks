@@ -135,6 +135,19 @@ APT::Periodic::Unattended-Upgrade "1";
 APT::Periodic::AutocleanInterval "7";
 Unattended-Upgrade::Automatic-Reboot "false";' | sudo tee /etc/apt/apt.conf.d/20auto-upgrades
 
+# Create swap space (critical for t3.micro with 1GB RAM)
+echo "Setting up swap space..."
+if [ ! -f /swapfile ]; then
+    sudo fallocate -l 2G /swapfile
+    sudo chmod 600 /swapfile
+    sudo mkswap /swapfile
+    sudo swapon /swapfile
+    echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+    echo "✓ 2GB swap space created"
+else
+    echo "✓ Swap space already configured"
+fi
+
 # Create application directory
 echo "Creating application directory..."
 sudo mkdir -p /var/www
