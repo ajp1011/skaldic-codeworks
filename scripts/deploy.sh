@@ -75,16 +75,12 @@ EOF
 chmod 600 .env
 echo "Secrets fetched and .env created"
 
-# Pull latest Docker images
-echo "Pulling Docker images..."
-docker compose -f docker-compose.prod.yml pull
-
 # Stop existing containers
 echo "Stopping existing containers..."
 docker compose -f docker-compose.prod.yml down
 
 # Build and start new containers
-echo "Starting new containers..."
+echo "Building and starting containers..."
 docker compose -f docker-compose.prod.yml up -d --build
 
 # Wait for database to be ready
