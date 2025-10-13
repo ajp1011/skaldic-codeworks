@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: Run Tests
+    name: Run Build, Unit and Feature Tests
     runs-on: ubuntu-latest
     
     steps:
@@ -43,6 +43,10 @@ jobs:
       - name: Generate application key
         run: php artisan key:generate
 
-      - name: Run tests
+      - name: Run Unit and Feature tests
         run: php artisan test
+
+      - name: Test production Docker build
+        run: |
+          docker compose -f docker-compose.prod.yml build --no-cache
 
