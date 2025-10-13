@@ -29,17 +29,20 @@ sudo apt-get install -y \
 
 # Install AWS CLI v2
 echo "Installing AWS CLI v2..."
-cd /tmp
+TEMP_DIR=$(mktemp -d)
+cd "$TEMP_DIR"
 if curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"; then
     unzip -q awscliv2.zip
     sudo ./aws/install
-    rm -rf aws awscliv2.zip
+    cd -
+    rm -rf "$TEMP_DIR"
     echo "✓ AWS CLI installed successfully"
 else
     echo "✗ Failed to download AWS CLI"
+    cd -
+    rm -rf "$TEMP_DIR"
     exit 1
 fi
-cd -
 
 # Install Docker
 echo "Installing Docker..."
