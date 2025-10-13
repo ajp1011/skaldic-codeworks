@@ -1,0 +1,70 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    image: skaldic-codeworks:production
+    container_name: skaldic-codeworks-app-prod
+    restart: always
+    working_dir: /var/www
+    volumes:
+      - ./storage:/var/www/storage
+      - ./bootstrap/cache:/var/www/bootstrap/cache
+      - ./docker/php/production.ini:/usr/local/etc/php/conf.d/local.ini
+    environment:
+      - CONTAINER_ROLE=app
+    networks:
+      - skaldic-codeworks-prod
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx:alpine
+    container_name: skaldic-codeworks-nginx-prod
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./public:/var/www/public:ro
+      - ./storage/app/public:/var/www/storage/app/public:ro
+      - ./docker/nginx/production.conf:/etc/nginx/conf.d/default.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - /var/www/certbot:/var/www/certbot:ro
+    networks:
+      - skaldic-codeworks-prod
+    depends_on:
+      - app
+
+  db:
+    image: mysql:8.0
+    container_name: skaldic-codeworks-db-prod
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+    volumes:
+      - dbdata-prod:/var/lib/mysql
+      - ./docker/mysql/production.cnf:/etc/mysql/conf.d/custom.cnf:ro
+    networks:
+      - skaldic-codeworks-prod
+    command: --default-authentication-plugin=mysql_native_password
+
+  certbot:
+    image: certbot/certbot:latest
+    container_name: skaldic-codeworks-certbot
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/www/certbot:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+volumes:
+  dbdata-prod:
+    driver: local
+
+networks:
+  skaldic-codeworks-prod:
+    driver: bridge
+
