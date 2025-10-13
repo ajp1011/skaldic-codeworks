@@ -30,22 +30,61 @@ sudo apt-get install -y \
 # Install AWS CLI v2
 echo "Installing AWS CLI v2..."
 cd /tmp
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip -q awscliv2.zip
-sudo ./aws/install
-rm -rf aws awscliv2.zip
+if curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"; then
+    unzip -q awscliv2.zip
+    sudo ./aws/install
+    rm -rf aws awscliv2.zip
+    echo "✓ AWS CLI installed successfully"
+else
+    echo "✗ Failed to download AWS CLI"
+    exit 1
+fi
 cd -
 
 # Install Docker
 echo "Installing Docker..."
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
-rm get-docker.sh
+if curl -fsSL https://get.docker.com -o get-docker.sh; then
+    if sudo sh get-docker.sh; then
+        rm get-docker.sh
+        echo "✓ Docker installed successfully"
+    else
+        echo "✗ Docker installation failed"
+        rm get-docker.sh
+        exit 1
+    fi
+else
+    echo "✗ Failed to download Docker install script"
+    exit 1
+fi
+
+# Start and enable Docker
+echo "Starting Docker service..."
+sudo systemctl start docker
+sudo systemctl enable docker
+
+# Verify Docker is running
+if ! sudo systemctl is-active --quiet docker; then
+    echo "✗ Docker service failed to start"
+    exit 1
+fi
+echo "✓ Docker service is running"
 
 # Install Docker Compose
 echo "Installing Docker Compose..."
-sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
+if sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose; then
+    sudo chmod +x /usr/local/bin/docker-compose
+    echo "✓ Docker Compose installed successfully"
+else
+    echo "✗ Failed to install Docker Compose"
+    exit 1
+fi
+
+# Verify installations
+echo "Verifying installations..."
+docker --version || { echo "✗ Docker verification failed"; exit 1; }
+docker-compose --version || docker compose version || { echo "✗ Docker Compose verification failed"; exit 1; }
+aws --version || { echo "✗ AWS CLI verification failed"; exit 1; }
+echo "✓ All installations verified"
 
 # Create deploy user
 echo "Creating deploy user..."
@@ -54,7 +93,15 @@ if ! id -u deploy > /dev/null 2>&1; then
     sudo usermod -aG docker deploy
     sudo usermod -aG sudo deploy
     echo "deploy ALL=(ALL) NOPASSWD: /usr/bin/docker, /usr/bin/docker-compose, /usr/local/bin/docker-compose" | sudo tee /etc/sudoers.d/deploy
+    echo "✓ Deploy user created"
+else
+    echo "✓ Deploy user already exists"
 fi
+
+# Add ubuntu user to docker group
+echo "Adding ubuntu user to docker group..."
+sudo usermod -aG docker ubuntu
+echo "✓ Ubuntu user added to docker group"
 
 # Configure UFW firewall
 echo "Configuring firewall..."
