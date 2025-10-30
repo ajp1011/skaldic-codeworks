@@ -1,5 +1,8 @@
 @import 'tailwindcss';
-@import './nordic-minimalism.css';
+
+/* Import Both Themes */
+@import './nordic-minimalism/nordic-minimalism.css';
+@import './forgecraft/forgecraft.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';

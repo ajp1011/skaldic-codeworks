@@ -1,0 +1,52 @@
+name: Run Tests
+
+on:
+  pull_request:
+    branches:
+      - develop
+      - main
+
+jobs:
+  test:
+    name: Run Build, Unit and Feature Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, pdo_mysql, gd, bcmath
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install NPM dependencies
+        run: npm ci
+
+      - name: Build assets
+        run: npm run build
+
+      - name: Copy .env.example to .env
+        run: cp env.example .env
+
+      - name: Generate application key
+        run: php artisan key:generate
+
+      - name: Run Unit and Feature tests
+        run: php artisan test
+
+      - name: Test production Docker build
+        run: |
+          docker compose -f docker-compose.prod.yml build --no-cache
+

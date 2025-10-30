@@ -1,0 +1,202 @@
+/* Resume/About Page Layout */
+.resume-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: var(--gradient-primary);
+    border: var(--border-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-2xl) 2.5rem;
+    box-shadow: var(--shadow-lg);
+    line-height: 1.7;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.resume-header {
+    text-align: center;
+    padding-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    border-bottom: 2px solid rgb(129 199 212 / 30%);
+}
+
+.resume-name {
+    font-family: var(--font-accent);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--off-white);
+    letter-spacing: 0.05em;
+    text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
+    margin: 0 0 0.75rem;
+}
+
+.resume-title {
+    font-family: var(--font-secondary);
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--icy-blue);
+    margin: 0 0 var(--spacing-md);
+    letter-spacing: 0.02em;
+}
+
+.resume-contact {
+    font-family: var(--font-secondary);
+    font-size: 0.925rem;
+    color: var(--metallic-silver);
+    margin: 0 0 var(--spacing-lg);
+}
+
+.contact-link {
+    color: var(--icy-blue);
+    text-decoration: none;
+    transition: color var(--transition-base);
+}
+
+.contact-link:hover {
+    color: var(--off-white);
+    text-decoration: underline;
+}
+
+/* Reveal trigger styling */
+.reveal-trigger {
+    color: var(--icy-blue);
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 0.875rem;
+    transition: color var(--transition-base);
+}
+
+.reveal-trigger:hover {
+    color: var(--off-white);
+}
+
+.resume-download {
+    margin-top: var(--spacing-lg);
+}
+
+.download-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: var(--spacing-xs);
+}
+
+.resume-section {
+    margin-bottom: 2.5rem;
+}
+
+.resume-section:last-child {
+    margin-bottom: 0;
+}
+
+.section-title {
+    font-family: var(--font-accent);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--off-white);
+    margin: 0 0 var(--spacing-md);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: var(--border-accent);
+    letter-spacing: 0.05em;
+    text-shadow: 0 1px 2px rgb(0 0 0 / 20%);
+}
+
+.resume-section p {
+    font-family: var(--font-secondary);
+    font-size: 0.975rem;
+    color: var(--off-white);
+    line-height: 1.8;
+    margin: 0;
+}
+
+.competencies-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.competencies-list li {
+    font-family: var(--font-secondary);
+    font-size: 0.975rem;
+    color: var(--off-white);
+    margin-bottom: 0.875rem;
+    padding-left: var(--spacing-lg);
+    position: relative;
+    line-height: 1.8;
+}
+
+.competencies-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.65rem;
+    width: 6px;
+    height: 6px;
+    background: var(--icy-blue);
+    border-radius: var(--radius-full);
+    box-shadow: 0 0 8px var(--icy-blue);
+}
+
+.competencies-list li strong {
+    color: var(--icy-blue);
+}
+
+.experience-item {
+    margin-bottom: var(--spacing-xl);
+}
+
+.experience-item:last-child {
+    margin-bottom: 0;
+}
+
+.experience-title {
+    font-family: var(--font-secondary);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--off-white);
+    margin: 0 0 var(--spacing-xs);
+}
+
+.experience-date {
+    font-family: var(--font-secondary);
+    font-size: 0.875rem;
+    font-style: italic;
+    color: var(--metallic-silver);
+    margin: 0 0 0.75rem;
+}
+
+.experience-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.experience-list li {
+    font-family: var(--font-secondary);
+    font-size: 0.925rem;
+    color: var(--off-white);
+    margin-bottom: 0.625rem;
+    padding-left: var(--spacing-lg);
+    position: relative;
+    line-height: 1.7;
+}
+
+.experience-list li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--icy-blue);
+    font-size: 1rem;
+}
+
+.education-degree {
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    color: var(--off-white);
+    margin: 0 0 var(--spacing-xs);
+}
+
+.education-school {
+    font-family: var(--font-secondary);
+    font-size: 0.925rem;
+    color: var(--metallic-silver);
+    margin: 0;
+}
+

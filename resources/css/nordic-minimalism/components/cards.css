@@ -1,0 +1,154 @@
+/* Card Components */
+.card {
+    background: var(--gradient-primary);
+    backdrop-filter: blur(10px);
+    border: var(--border-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-2xl) var(--spacing-xl);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: var(--shadow-lg), 0 0 0 1px rgb(129 199 212 / 10%);
+    animation: fadeInUp 0.8s ease-out;
+    position: relative;
+    z-index: 3;
+}
+
+/* Welcome Card */
+.welcome-card {
+    grid-column: 1 / -1;
+    background: var(--gradient-accent);
+    border: 1px solid rgb(129 199 212 / 40%);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-lg), 0 0 0 1px rgb(129 199 212 / 20%);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.welcome-title {
+    font-family: var(--font-accent);
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--off-white);
+    margin: 0 0 var(--spacing-xs);
+    letter-spacing: -0.01em;
+    text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
+}
+
+.welcome-subtitle {
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    color: rgb(247 250 252 / 90%);
+    margin: 0;
+}
+
+/* Stat Cards */
+.stat-card {
+    background: var(--gradient-primary);
+    border: var(--border-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgb(0 0 0 / 50%), var(--shadow-glow);
+    border-color: var(--icy-blue);
+}
+
+.stat-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.stat-info {
+    flex: 1;
+}
+
+.stat-label {
+    font-family: var(--font-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--metallic-silver);
+    margin: 0 0 var(--spacing-xs);
+    letter-spacing: 0.02em;
+}
+
+.stat-value {
+    font-family: var(--font-accent);
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--off-white);
+    margin: 0;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.stat-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.stat-icon-blue {
+    background: var(--gradient-accent);
+    color: var(--off-white);
+}
+
+.stat-icon-green {
+    background: var(--gradient-green);
+    color: var(--off-white);
+}
+
+.stat-icon-purple {
+    background: var(--gradient-purple);
+    color: var(--off-white);
+}
+
+/* Activity Card */
+.activity-card {
+    grid-column: span 2;
+    background: var(--gradient-primary);
+    border: var(--border-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* Actions Card */
+.actions-card {
+    background: var(--gradient-primary);
+    border: var(--border-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.card-header {
+    padding: var(--spacing-lg);
+    border-bottom: var(--border-primary);
+}
+
+.card-title {
+    font-family: var(--font-secondary);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--off-white);
+    margin: 0;
+    letter-spacing: -0.01em;
+}
+

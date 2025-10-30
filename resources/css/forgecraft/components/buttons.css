@@ -1,0 +1,163 @@
+/* Button Components - Forgecraft Modern */
+
+.nordic-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 2.5rem;
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--forge-white);
+    background: var(--gradient-primary);
+    border: 2px solid var(--ember-orange);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-sm), inset 0 1px 1px rgb(255 107 53 / 10%);
+    position: relative;
+    overflow: hidden;
+}
+
+.nordic-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 107, 53, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.nordic-button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+button.nordic-button {
+    appearance: none;
+}
+
+.nordic-button:hover {
+    background: var(--gradient-accent);
+    border-color: var(--molten-red);
+    box-shadow: 0 6px 16px rgb(0 0 0 / 50%), var(--shadow-glow-orange);
+    transform: translateY(-2px);
+}
+
+.nordic-button:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+.nordic-button-full {
+    width: 100%;
+}
+
+/* Logout Button Variant */
+.logout-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem var(--spacing-md);
+    font-family: var(--font-secondary);
+    font-size: 0.925rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--forge-white);
+    background: var(--gradient-iron);
+    border: 2px solid #8b0000;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-sm);
+}
+
+.logout-button:hover {
+    background: linear-gradient(135deg, #8b0000 0%, #5c0000 100%);
+    box-shadow: 0 4px 16px rgb(139 0 0 / 40%);
+    transform: translateY(-1px);
+    border-color: #b30000;
+}
+
+.logout-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+    margin-right: var(--spacing-xs);
+    stroke-width: 2.5;
+}
+
+/* Action Buttons */
+.action-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0.875rem var(--spacing-md);
+    margin-bottom: 0.75rem;
+    font-family: var(--font-secondary);
+    font-size: 0.925rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--forge-white);
+    background: var(--gradient-primary);
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-sm);
+}
+
+.action-button:last-child {
+    margin-bottom: 0;
+}
+
+.action-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.action-button-blue {
+    border-color: var(--steel-blue);
+}
+
+.action-button-blue:hover {
+    background: var(--gradient-steel);
+    box-shadow: 0 4px 16px rgb(74 144 164 / 40%);
+    border-color: var(--steel-blue);
+}
+
+.action-button-green {
+    border-color: #38a169;
+}
+
+.action-button-green:hover {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    box-shadow: 0 4px 16px rgb(72 187 120 / 40%);
+}
+
+.action-button-purple {
+    border-color: var(--ember-orange);
+}
+
+.action-button-purple:hover {
+    background: var(--gradient-accent);
+    box-shadow: 0 4px 16px rgb(255 107 53 / 40%);
+}
+
+.action-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+    stroke-width: 2.5;
+}
+

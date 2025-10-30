@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>@yield('title', config('app.name', 'Laravel'))</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+        @if($currentTheme === 'forgecraft')
+            @vite(['resources/css/themes/forgecraft.css', 'resources/js/app.ts'])
+        @else
+            @vite(['resources/css/themes/nordic-minimalism.css', 'resources/js/app.ts'])
+        @endif
+        @stack('styles')
+    </head>
+<body>
+    @stack('body-start')
+    @yield('content')
+    
+    <footer class="site-footer">
+        <p>&copy; {{ date('Y') }} Skaldic Codeworks, LLC. All rights reserved.</p>
+    </footer>
+    
+    @stack('scripts')
+</body>
+</html>
