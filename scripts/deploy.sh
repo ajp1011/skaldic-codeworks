@@ -19,16 +19,21 @@ echo "Fetching secrets from AWS Parameter Store..."
 
 # Get region from environment or EC2 metadata
 if [ -z "$AWS_REGION" ]; then
-    AWS_REGION=$(curl -s http://169.254.169.254/latest/meta-data/placement/region 2>/dev/null || echo "us-east-1")
+    AWS_REGION=$(curl -s http://169.254.169.254/latest/meta-data/placement/region 2>/dev/null)
 fi
+
+# Fallback to us-east-1 if empty
+AWS_REGION="${AWS_REGION:-us-east-1}"
+
+echo "Using AWS region: $AWS_REGION"
 
 # Parameter Store path prefix
 PARAM_PREFIX="${PARAM_PREFIX:-/skaldic-codeworks/production}"
 
 # Fetch parameters
-DB_PASSWORD=$(aws ssm get-parameter --name "$PARAM_PREFIX/db-password" --with-decryption --query 'Parameter.Value' --output text --region $AWS_REGION)
-DB_ROOT_PASSWORD=$(aws ssm get-parameter --name "$PARAM_PREFIX/db-root-password" --with-decryption --query 'Parameter.Value' --output text --region $AWS_REGION)
-APP_KEY=$(aws ssm get-parameter --name "$PARAM_PREFIX/app-key" --with-decryption --query 'Parameter.Value' --output text --region $AWS_REGION)
+DB_PASSWORD=$(aws ssm get-parameter --name "$PARAM_PREFIX/db-password" --with-decryption --query 'Parameter.Value' --output text --region "$AWS_REGION")
+DB_ROOT_PASSWORD=$(aws ssm get-parameter --name "$PARAM_PREFIX/db-root-password" --with-decryption --query 'Parameter.Value' --output text --region "$AWS_REGION")
+APP_KEY=$(aws ssm get-parameter --name "$PARAM_PREFIX/app-key" --with-decryption --query 'Parameter.Value' --output text --region "$AWS_REGION")
 
 # Create .env file
 cat > .env << EOF
@@ -70,16 +75,12 @@ EOF
 chmod 600 .env
 echo "Secrets fetched and .env created"
 
-# Pull latest Docker images
-echo "Pulling Docker images..."
-docker compose -f docker-compose.prod.yml pull
-
 # Stop existing containers
 echo "Stopping existing containers..."
 docker compose -f docker-compose.prod.yml down
 
 # Build and start new containers
-echo "Starting new containers..."
+echo "Building and starting containers..."
 docker compose -f docker-compose.prod.yml up -d --build
 
 # Wait for database to be ready
