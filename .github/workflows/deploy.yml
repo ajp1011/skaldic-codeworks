@@ -50,6 +50,9 @@ jobs:
     name: Deploy to AWS EC2
     needs: test
     runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://skaldiccodeworks.dev
     
     steps:
       - name: Checkout code
