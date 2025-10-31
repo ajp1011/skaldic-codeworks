@@ -1,0 +1,18 @@
+{
+  "version": 1.1,
+  "atDirectives": [
+    {
+      "name": "@source",
+      "description": "Tailwind CSS v4 @source directive for content scanning"
+    },
+    {
+      "name": "@theme",
+      "description": "Tailwind CSS v4 @theme directive for theme customization"
+    },
+    {
+      "name": "@import",
+      "description": "CSS @import directive"
+    }
+  ]
+}
+

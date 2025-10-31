@@ -109,6 +109,14 @@
     .activity-card {
         grid-column: span 1;
     }
+    
+    .empty-state-card {
+        grid-column: span 1;
+    }
+    
+    .module-card {
+        grid-column: span 1;
+    }
 }
 
 @media (width <= 768px) {
