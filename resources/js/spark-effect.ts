@@ -4,16 +4,17 @@
  */
 
 class SparkEffect {
-  private canvas: HTMLCanvasElement;
-  private ctx: CanvasRenderingContext2D;
+  private canvas: HTMLCanvasElement | null = null;
+  private ctx: CanvasRenderingContext2D | null = null;
   private particles: SparkParticle[] = [];
   private animationId: number | null = null;
-  private resizeHandler: () => void;
+  private resizeHandler: (() => void) | null = null;
 
   constructor(containerId: string) {
     const container = document.getElementById(containerId);
     if (!container) {
-      throw new Error(`Container with id "${containerId}" not found`);
+      console.warn(`Container with id "${containerId}" not found - skipping spark effect initialization`);
+      return;
     }
 
     this.canvas = document.createElement('canvas');
@@ -40,10 +41,13 @@ class SparkEffect {
     this.resizeCanvas();
     this.createParticles();
     this.animate();
-    window.addEventListener('resize', this.resizeHandler);
+    if (this.resizeHandler) {
+      window.addEventListener('resize', this.resizeHandler);
+    }
   }
 
   private resizeCanvas(): void {
+    if (!this.canvas) return;
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
   }
@@ -94,6 +98,7 @@ class SparkEffect {
   }
 
   private drawParticle(particle: SparkParticle): void {
+    if (!this.ctx) return;
     this.ctx.save();
     
     const opacity = particle.opacity * particle.life;
@@ -143,6 +148,7 @@ class SparkEffect {
   }
 
   private animate = (): void => {
+    if (!this.ctx) return;
     this.ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
     
     this.particles.forEach(particle => {
@@ -157,8 +163,12 @@ class SparkEffect {
     if (this.animationId) {
       cancelAnimationFrame(this.animationId);
     }
-    window.removeEventListener('resize', this.resizeHandler);
-    this.canvas.remove();
+    if (this.resizeHandler) {
+      window.removeEventListener('resize', this.resizeHandler);
+    }
+    if (this.canvas) {
+      this.canvas.remove();
+    }
   }
 }
 
