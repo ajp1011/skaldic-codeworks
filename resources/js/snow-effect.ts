@@ -172,7 +172,10 @@ interface SnowParticle {
 
 // Initialize snow effect when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-  new SnowEffect('snow-container');
+  const container = document.getElementById('snow-container');
+  if (container) {
+    new SnowEffect('snow-container');
+  }
 });
 
 export default SnowEffect;

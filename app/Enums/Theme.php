@@ -72,19 +72,6 @@ enum Theme: string
     }
 
     /**
-     * Get the text component name for the theme.
-     *
-     * @return string
-     */
-    public function textComponent(): string
-    {
-        return match ($this) {
-            self::NORDIC_MINIMALISM => 'CarvedText',
-            self::FORGECRAFT_MODERN => 'ForgedText',
-        };
-    }
-
-    /**
      * Get the particle container ID for the theme.
      *
      * @return string
