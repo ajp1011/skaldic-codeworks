@@ -8,11 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class LogoutUserAction
 {
-    /**
-     * Execute the logout action.
-     *
-     * @return void
-     */
     public function execute(): void
     {
         Auth::logout();

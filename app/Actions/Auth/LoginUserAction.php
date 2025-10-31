@@ -9,14 +9,6 @@ use Illuminate\Validation\ValidationException;
 
 class LoginUserAction
 {
-    /**
-     * Execute the login action.
-     *
-     * @param array $credentials
-     * @param bool $remember
-     * @return bool
-     * @throws ValidationException
-     */
     public function execute(array $credentials, bool $remember = false): bool
     {
         if (Auth::attempt($credentials, $remember)) {

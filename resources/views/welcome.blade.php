@@ -11,5 +11,5 @@
 @endpush
 
 @section('content')
-    <div id="app" data-authenticated="{{ auth()->check() ? 'true' : 'false' }}"></div>
+    <div id="app" data-authenticated="{{ auth()->check() ? 'true' : 'false' }}" data-theme="{{ $currentTheme }}"></div>
 @endsection

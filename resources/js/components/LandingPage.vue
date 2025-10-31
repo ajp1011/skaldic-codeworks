@@ -11,6 +11,22 @@
           <a href="#about" @click.prevent="smoothScroll">About</a>
           <a href="#services" @click.prevent="smoothScroll">Services</a>
           <a href="#contact" @click.prevent="smoothScroll">Contact</a>
+          <div class="theme-dropdown">
+            <select 
+              :value="selectedTheme" 
+              @change="handleThemeChange($event)"
+              class="theme-select"
+              aria-label="Select theme"
+            >
+              <option 
+                v-for="theme in themes" 
+                :key="theme.value" 
+                :value="theme.value"
+              >
+                {{ theme.label }}
+              </option>
+            </select>
+          </div>
           <a v-if="isAuthenticated" href="/dashboard" class="nav-button">Dashboard</a>
           <button v-else @click="openLoginModal" class="nav-button">Log In</button>
         </div>
@@ -138,7 +154,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, nextTick } from 'vue';
 // @ts-ignore
 import LoginModal from './LoginModal.vue';
 import { useAuth } from '../composables/useAuth';
@@ -146,6 +162,7 @@ import { useLoginModal } from '../composables/useLoginModal';
 import { useNavigationScroll } from '../composables/useNavigationScroll';
 import { useSmoothScroll } from '../composables/useSmoothScroll';
 import { useScrollAnimations } from '../composables/useScrollAnimations';
+import { useTheme } from '../composables/useTheme';
 
 // Composables
 const { isAuthenticated, setAuthenticated, checkAuth } = useAuth();
@@ -158,8 +175,66 @@ const {
   init: initScrollAnimations,
   cleanup: cleanupScrollAnimations
 } = useScrollAnimations();
+const { currentTheme, themes, switchTheme } = useTheme();
 
-// Refs for scroll animations
+const getInitialTheme = (): 'nordic-minimalism' | 'forgecraft' => {
+  const appElement = document.getElementById('app');
+  const dataTheme = appElement?.getAttribute('data-theme');
+  
+  if (dataTheme === 'nordic-minimalism' || dataTheme === 'forgecraft') {
+    console.log('Theme from data attribute:', dataTheme);
+    return dataTheme;
+  }
+  
+  try {
+    const cookies = document.cookie.split(';');
+    let cookieValue: string | undefined;
+    
+    for (const cookie of cookies) {
+      const trimmed = cookie.trim();
+      if (trimmed.startsWith('theme=')) {
+        cookieValue = trimmed.substring(6);
+        break;
+      }
+    }
+    
+    if (cookieValue) {
+      const decoded = decodeURIComponent(cookieValue).trim();
+      console.log('Theme from cookie:', decoded);
+      
+      if (decoded === 'nordic-minimalism' || decoded === 'forgecraft') {
+        return decoded;
+      }
+    }
+  } catch (error) {
+    console.error('Error reading theme cookie:', error);
+  }
+  
+  console.log('No valid theme found, defaulting to nordic-minimalism');
+  return 'nordic-minimalism';
+};
+
+const initialTheme = getInitialTheme();
+const selectedTheme = ref<'nordic-minimalism' | 'forgecraft'>(initialTheme);
+console.log('Initial selectedTheme value:', selectedTheme.value);
+
+const handleThemeChange = (event: Event) => {
+  const target = event.target as HTMLSelectElement;
+  const value = target.value as 'nordic-minimalism' | 'forgecraft';
+  
+  console.log('Theme change handler called, value:', value, 'current:', selectedTheme.value);
+  
+  if (!value || (value !== 'nordic-minimalism' && value !== 'forgecraft')) {
+    console.error('Invalid theme value:', value);
+    return;
+  }
+  
+  selectedTheme.value = value;
+  
+  console.log('Switching theme from', currentTheme.value, 'to', value);
+  switchTheme(value);
+};
+
 const heroContent = ref<HTMLElement | null>(null);
 const heroTitle = ref<HTMLElement | null>(null);
 const heroAccent = ref<HTMLElement | null>(null);
@@ -173,7 +248,6 @@ const serviceCards = ref<(HTMLElement | null)[]>([]);
 const contactTitle = ref<HTMLElement | null>(null);
 const contactContent = ref<HTMLElement | null>(null);
 
-// Services data
 const services = [
   {
     icon: '⚡',
@@ -197,16 +271,35 @@ const services = [
   }
 ];
 
-// Handle successful login
 const handleLoginSuccess = () => {
   closeLoginModal();
   setAuthenticated(true);
 };
 
-// Setup scroll animations on mount
 onMounted(() => {
-  // Check authentication status
   checkAuth();
+  
+  const initialTheme = getInitialTheme();
+  console.log('onMounted: Setting selectedTheme to:', initialTheme);
+  selectedTheme.value = initialTheme;
+  
+  currentTheme.value = initialTheme;
+  console.log('Synced currentTheme.value to:', currentTheme.value);
+  
+  nextTick(() => {
+    const selectElement = document.querySelector('.theme-select') as HTMLSelectElement | null;
+    if (selectElement) {
+      selectElement.value = initialTheme;
+      console.log('Forced select element value to:', selectElement.value, 'expected:', initialTheme);
+      
+      if (selectElement.value !== initialTheme) {
+        console.error('Select value mismatch! Element value:', selectElement.value, 'Expected:', initialTheme);
+        selectElement.value = initialTheme;
+      }
+    } else {
+      console.error('Select element not found!');
+    }
+  });
   
   setupNavigationScroll();
   

@@ -5,3 +5,13 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+
+import type { AxiosInstance } from 'axios';
+
+declare global {
+  interface Window {
+    axios: AxiosInstance;
+  }
+}
+
+export {};

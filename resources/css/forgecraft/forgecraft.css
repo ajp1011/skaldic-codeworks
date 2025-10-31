@@ -108,7 +108,6 @@
     color: var(--cool-gray);
 }
 
-/* Responsive Design */
 @media (width <= 1024px) {
     .activity-card {
         grid-column: span 1;

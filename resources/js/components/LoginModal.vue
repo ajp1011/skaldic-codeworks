@@ -155,18 +155,13 @@ const handleSubmit = async () => {
       redirect: 'manual'
     });
 
-    // Check if response is OK or a redirect (success)
-    // With redirect: 'manual', redirects become opaque with status 0
-    // Note: TypeScript's Response type doesn't include 'opaqueredirect', but it can occur with redirect: 'manual'
     const isSuccess = response.ok || 
                      response.status === 302 || 
                      response.status === 0 ||
                      (response.type as string) === 'opaqueredirect';
     
     if (isSuccess) {
-      // Success - close modal and redirect
       emit('success');
-      // Redirect to dashboard (or intended URL)
       window.location.href = '/dashboard';
       return;
     }
@@ -183,7 +178,6 @@ const handleSubmit = async () => {
         if (contentType && contentType.includes('application/json')) {
           const data = await response.json();
           if (data.errors) {
-            // Laravel returns errors as { field: [messages] }, extract first message for each field
             const formattedErrors: Record<string, string> = {};
             for (const [field, messages] of Object.entries(data.errors)) {
               if (Array.isArray(messages) && messages.length > 0) {
@@ -200,11 +194,9 @@ const handleSubmit = async () => {
           generalError.value = 'Validation failed';
         }
       } catch (parseError) {
-        // If we can't parse JSON, show generic error
         generalError.value = 'Validation failed';
       }
     } else if (response.status !== 0) {
-      // Only try to parse error if not an opaque redirect (status 0)
       try {
         const contentType = response.headers.get('content-type');
         if (contentType && contentType.includes('application/json')) {
@@ -215,7 +207,6 @@ const handleSubmit = async () => {
             generalError.value = 'Invalid email or password';
           }
         } else {
-          // Response is not JSON (probably HTML error page)
           generalError.value = 'Invalid email or password';
         }
       } catch (parseError) {
@@ -230,7 +221,6 @@ const handleSubmit = async () => {
   }
 };
 
-// Watch for modal open to focus first input
 watch(() => props.isOpen, (isOpen) => {
   if (isOpen) {
     nextTick(() => {
@@ -242,11 +232,9 @@ watch(() => props.isOpen, (isOpen) => {
   }
 });
 
-// Get CSRF token on mount
 onMounted(() => {
   csrfToken.value = getCsrfToken();
   
-  // If meta tag doesn't exist, try to get from cookie or make a request
   if (!csrfToken.value) {
     const cookies = document.cookie.split(';');
     for (let cookie of cookies) {
@@ -261,7 +249,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Modal Overlay */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -278,7 +265,6 @@ onMounted(() => {
   overflow-y: auto;
 }
 
-/* Modal Container */
 .modal-container {
   position: relative;
   width: 100%;
@@ -291,7 +277,6 @@ onMounted(() => {
   margin: auto;
 }
 
-/* Modal Header */
 .modal-header {
   text-align: center;
   margin-bottom: var(--spacing-xl);
