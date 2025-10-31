@@ -1,14 +1,15 @@
 class SnowEffect {
-  private canvas: HTMLCanvasElement;
-  private ctx: CanvasRenderingContext2D;
+  private canvas: HTMLCanvasElement | null = null;
+  private ctx: CanvasRenderingContext2D | null = null;
   private particles: SnowParticle[] = [];
   private animationId: number | null = null;
-  private resizeHandler: () => void;
+  private resizeHandler: (() => void) | null = null;
 
   constructor(containerId: string) {
     const container = document.getElementById(containerId);
     if (!container) {
-      throw new Error(`Container with id "${containerId}" not found`);
+      console.warn(`Container with id "${containerId}" not found - skipping snow effect initialization`);
+      return;
     }
 
     this.canvas = document.createElement('canvas');
@@ -35,10 +36,13 @@ class SnowEffect {
     this.resizeCanvas();
     this.createParticles();
     this.animate();
-    window.addEventListener('resize', this.resizeHandler);
+    if (this.resizeHandler) {
+      window.addEventListener('resize', this.resizeHandler);
+    }
   }
 
   private resizeCanvas(): void {
+    if (!this.canvas) return;
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
   }
@@ -67,6 +71,7 @@ class SnowEffect {
   }
 
   private drawParticle(particle: SnowParticle): void {
+    if (!this.ctx) return;
     this.ctx.save();
     this.ctx.translate(particle.x, particle.y);
     this.ctx.rotate(particle.rotation);
@@ -138,6 +143,7 @@ class SnowEffect {
   }
 
   private animate = (): void => {
+    if (!this.ctx) return;
     // Clear canvas
     this.ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
     
@@ -154,8 +160,12 @@ class SnowEffect {
     if (this.animationId) {
       cancelAnimationFrame(this.animationId);
     }
-    window.removeEventListener('resize', this.resizeHandler);
-    this.canvas.remove();
+    if (this.resizeHandler) {
+      window.removeEventListener('resize', this.resizeHandler);
+    }
+    if (this.canvas) {
+      this.canvas.remove();
+    }
   }
 }
 

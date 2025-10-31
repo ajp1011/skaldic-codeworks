@@ -83,6 +83,10 @@ docker compose -f docker-compose.prod.yml down
 echo "Building and starting containers..."
 docker compose -f docker-compose.prod.yml up -d --build
 
+# Copy built assets from image to volume (assets are built in Dockerfile but volume masks them)
+echo "Copying built assets to volume..."
+docker compose -f docker-compose.prod.yml exec -u root -T app /usr/local/bin/copy-assets.sh || echo "Warning: Assets copy failed"
+
 # Wait for database to be ready
 echo "Waiting for database..."
 sleep 10

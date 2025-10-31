@@ -35,6 +35,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs \
     && npm install \
     && npm run build \
+    && mkdir -p /tmp/public_build && cp -r public/build /tmp/public_build/ \
     && npm cache clean --force \
     && apt-get remove -y nodejs \
     && apt-get autoremove -y
@@ -45,7 +46,9 @@ RUN composer run-script post-autoload-dump
 # Set permissions
 RUN chown -R www-data:www-data /var/www \
     && chmod -R 755 /var/www/storage \
-    && chmod -R 755 /var/www/bootstrap/cache
+    && chmod -R 755 /var/www/bootstrap/cache \
+    && chown -R root:root /tmp/public_build \
+    && chmod -R 755 /tmp/public_build
 
 # Optimize Laravel for production
 RUN php artisan config:cache || true \
@@ -54,6 +57,9 @@ RUN php artisan config:cache || true \
 
 # Expose port 9000
 EXPOSE 9000
+
+# Copy script to copy assets as root
+RUN echo '#!/bin/sh\necho "Copying assets to volume..."\ncp -r /tmp/public_build/build /var/www/public/\nchown -R www-data:www-data /var/www/public/build\nchmod -R 755 /var/www/public/build\necho "Assets copied successfully"' > /usr/local/bin/copy-assets.sh && chmod +x /usr/local/bin/copy-assets.sh
 
 # Run as www-data
 USER www-data
