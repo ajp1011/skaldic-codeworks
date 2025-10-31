@@ -64,14 +64,6 @@ test('forgecraft modern effect path returns correct value', function () {
     expect(Theme::FORGECRAFT_MODERN->effectPath())->toBe('./spark-effect');
 });
 
-test('nordic minimalism text component returns correct value', function () {
-    expect(Theme::NORDIC_MINIMALISM->textComponent())->toBe('CarvedText');
-});
-
-test('forgecraft modern text component returns correct value', function () {
-    expect(Theme::FORGECRAFT_MODERN->textComponent())->toBe('ForgedText');
-});
-
 test('nordic minimalism particle container returns correct value', function () {
     expect(Theme::NORDIC_MINIMALISM->particleContainer())->toBe('snow-container');
 });

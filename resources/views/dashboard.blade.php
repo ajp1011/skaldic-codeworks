@@ -7,123 +7,91 @@
 <div class="dashboard-grid">
     <div class="welcome-card">
         <h3 class="welcome-title">Welcome back, {{ auth()->user()->name ?? 'User' }}!</h3>
-        <p class="welcome-subtitle">Here's what's happening with your account today.</p>
+        <p class="welcome-subtitle">Explore the available modules and services below.</p>
     </div>
     
-    <div class="stat-card">
-        <div class="stat-content">
-            <div class="stat-info">
-                <p class="stat-label">Total Projects</p>
-                <p class="stat-value">12</p>
-            </div>
-            <div class="stat-icon stat-icon-blue">
+    <!-- API Control Panel Module -->
+    <div class="module-card">
+        <div class="module-header">
+            <div class="module-icon module-icon-blue">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                 </svg>
+            </div>
+            <h3 class="module-title">API Control Panel</h3>
+        </div>
+        <div class="module-content">
+            <p class="module-description">
+                Administrator interface for managing and interacting with AWS console services. 
+                Provides secure access to cloud resources, monitoring, and configuration management.
+            </p>
+            <div class="module-status">
+                <span class="status-badge status-coming-soon">Coming Soon</span>
             </div>
         </div>
     </div>
     
-    <div class="stat-card">
-        <div class="stat-content">
-            <div class="stat-info">
-                <p class="stat-label">Active Tasks</p>
-                <p class="stat-value">8</p>
-            </div>
-            <div class="stat-icon stat-icon-green">
+    <!-- Multimedia Player Module -->
+    <div class="module-card">
+        <div class="module-header">
+            <div class="module-icon module-icon-green">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
+            </div>
+            <h3 class="module-title">Multimedia Player</h3>
+        </div>
+        <div class="module-content">
+            <p class="module-description">
+                Rich media playback system with support for video and audio formats. 
+                Features playlist management, streaming capabilities, and media library organization.
+            </p>
+            <div class="module-status">
+                <span class="status-badge status-coming-soon">Coming Soon</span>
             </div>
         </div>
     </div>
     
-    <div class="stat-card">
-        <div class="stat-content">
-            <div class="stat-info">
-                <p class="stat-label">Completed</p>
-                <p class="stat-value">24</p>
-            </div>
-            <div class="stat-icon stat-icon-purple">
+    <!-- Reporting Service Module -->
+    <div class="module-card">
+        <div class="module-header">
+            <div class="module-icon module-icon-purple">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                 </svg>
+            </div>
+            <h3 class="module-title">Reporting Service</h3>
+        </div>
+        <div class="module-content">
+            <p class="module-description">
+                Comprehensive reporting and analytics platform with customizable dashboards. 
+                Generate reports in multiple formats with scheduled delivery and data visualization.
+            </p>
+            <div class="module-status">
+                <span class="status-badge status-coming-soon">Coming Soon</span>
             </div>
         </div>
     </div>
     
-    <div class="activity-card">
-        <div class="card-header">
-            <h3 class="card-title">Recent Activity</h3>
-        </div>
-        <div class="activity-list">
-            <div class="activity-item">
-                <div class="activity-icon activity-icon-blue">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-                    </svg>
-                </div>
-                <div class="activity-details">
-                    <p class="activity-title">New project created</p>
-                    <p class="activity-subtitle">Skaldic Codeworks Website</p>
-                    <p class="activity-time">2 hours ago</p>
-                </div>
-            </div>
-            
-            <div class="activity-item">
-                <div class="activity-icon activity-icon-green">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                    </svg>
-                </div>
-                <div class="activity-details">
-                    <p class="activity-title">Task completed</p>
-                    <p class="activity-subtitle">Dashboard implementation</p>
-                    <p class="activity-time">3 hours ago</p>
-                </div>
-            </div>
-            
-            <div class="activity-item">
-                <div class="activity-icon activity-icon-purple">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
-                    </svg>
-                </div>
-                <div class="activity-details">
-                    <p class="activity-title">New comment added</p>
-                    <p class="activity-subtitle">Authentication module review</p>
-                    <p class="activity-time">5 hours ago</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="actions-card">
-        <div class="card-header">
-            <h3 class="card-title">Quick Actions</h3>
-        </div>
-        <div class="actions-list">
-            <a href="{{ route('about') }}" class="action-button action-button-blue">
-                <svg class="action-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+    <!-- CRM/Ticketing System Module -->
+    <div class="module-card">
+        <div class="module-header">
+            <div class="module-icon module-icon-orange">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
                 </svg>
-                View Profile
-            </a>
-            
-            <button class="action-button action-button-green">
-                <svg class="action-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-                </svg>
-                New Project
-            </button>
-            
-            <button class="action-button action-button-purple">
-                <svg class="action-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                </svg>
-                Settings
-            </button>
+            </div>
+            <h3 class="module-title">CRM/Ticketing System</h3>
+        </div>
+        <div class="module-content">
+            <p class="module-description">
+                Customer relationship management and support ticketing system designed for landlords and tenants. 
+                Manage properties, handle maintenance requests, and maintain communication logs.
+            </p>
+            <div class="module-status">
+                <span class="status-badge status-coming-soon">Coming Soon</span>
+            </div>
         </div>
     </div>
 </div>
