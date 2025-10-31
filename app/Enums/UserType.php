@@ -11,11 +11,6 @@ enum UserType: string
     case USER = 'user';
     case GUEST = 'guest';
 
-    /**
-     * Get the display label for the user type.
-     *
-     * @return string
-     */
     public function label(): string
     {
         return match ($this) {
@@ -26,21 +21,11 @@ enum UserType: string
         };
     }
 
-    /**
-     * Get all user type values.
-     *
-     * @return array<string>
-     */
     public static function values(): array
     {
         return array_map(fn (self $type) => $type->value, self::cases());
     }
 
-    /**
-     * Get all user type labels.
-     *
-     * @return array<string, string>
-     */
     public static function options(): array
     {
         $options = [];

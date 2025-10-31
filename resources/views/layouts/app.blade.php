@@ -13,7 +13,7 @@
         @endif
         @stack('styles')
     </head>
-<body>
+<body data-theme="{{ $currentTheme }}">
     @stack('body-start')
     @yield('content')
     

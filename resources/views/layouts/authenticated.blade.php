@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>@yield('title', config('app.name', 'Laravel'))</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
         @if($currentTheme === 'forgecraft')
@@ -12,7 +13,7 @@
         @endif
         @stack('styles')
     </head>
-<body>
+<body data-theme="{{ $currentTheme }}">
     @stack('body-start')
     @if($currentTheme === 'forgecraft')
         <div id="spark-container"></div>
@@ -41,6 +42,14 @@
             </nav>
             
             <div class="sidebar-footer">
+                <div class="theme-selector-wrapper">
+                    <label for="dashboard-theme-select" class="theme-selector-label">Theme</label>
+                    <select id="dashboard-theme-select" class="theme-selector" aria-label="Select theme">
+                        <option value="nordic-minimalism" {{ $currentTheme === 'nordic-minimalism' ? 'selected' : '' }}>Nordic Minimalism</option>
+                        <option value="forgecraft" {{ $currentTheme === 'forgecraft' ? 'selected' : '' }}>Forgecraft Modern</option>
+                    </select>
+                </div>
+                
                 <div class="user-profile">
                     <div class="user-avatar">
                         {{ strtoupper(substr(auth()->user()->name ?? 'U', 0, 1)) }}
@@ -80,5 +89,46 @@
     </div>
     
     @stack('scripts')
+    <script>
+        // Dashboard Theme Switcher
+        (function() {
+            const themeSelect = document.getElementById('dashboard-theme-select');
+            if (!themeSelect) return;
+
+            themeSelect.addEventListener('change', async function(e) {
+                const theme = e.target.value;
+                const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content;
+
+                if (!csrfToken) {
+                    console.error('CSRF token not found');
+                    return;
+                }
+
+                try {
+                    const response = await fetch('/theme', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken,
+                            'Accept': 'application/json',
+                        },
+                        body: JSON.stringify({ theme: theme })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Failed to update theme');
+                    }
+
+                    // Reload page to apply new theme
+                    window.location.reload();
+                } catch (error) {
+                    console.error('Failed to update theme:', error);
+                    // Revert selection on error
+                    themeSelect.value = '{{ $currentTheme }}';
+                    alert('Failed to update theme. Please try again.');
+                }
+            });
+        })();
+    </script>
 </body>
 </html>

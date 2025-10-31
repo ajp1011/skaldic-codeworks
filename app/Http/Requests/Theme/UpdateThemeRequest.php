@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\Theme;
 
+use App\Enums\Theme;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
-class LoginRequest extends FormRequest
+class UpdateThemeRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -16,9 +18,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
-            'remember' => ['nullable', 'boolean'],
+            'theme' => ['required', new Enum(Theme::class)],
         ];
     }
 }
