@@ -8,6 +8,7 @@ use App\Http\Requests\Theme\UpdateThemeRequest;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 
 uses(RefreshDatabase::class);
 
@@ -25,7 +26,8 @@ test('update method calls action and returns json response', function () {
     $request->shouldReceive('validated')
         ->once()
         ->andReturn(['theme' => 'forgecraft']);
-    $request->shouldReceive('user')
+
+    Auth::shouldReceive('user')
         ->once()
         ->andReturn(null);
 
@@ -52,7 +54,8 @@ test('update method passes authenticated user to action', function () {
     $request->shouldReceive('validated')
         ->once()
         ->andReturn(['theme' => 'nordic-minimalism']);
-    $request->shouldReceive('user')
+
+    Auth::shouldReceive('user')
         ->once()
         ->andReturn($user);
 
@@ -72,7 +75,8 @@ test('update method returns response with cache headers', function () {
     $request->shouldReceive('validated')
         ->once()
         ->andReturn(['theme' => 'forgecraft']);
-    $request->shouldReceive('user')
+
+    Auth::shouldReceive('user')
         ->once()
         ->andReturn(null);
 

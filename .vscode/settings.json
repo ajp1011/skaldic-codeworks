@@ -3,5 +3,8 @@
   "typescript.suggest.autoImports": true,
   "typescript.tsdk": "./node_modules/typescript/lib",
   "css.lint.unknownAtRules": "ignore",
-  "css.customData": [".vscode/css-custom-data.json"]
+  "css.customData": [".vscode/css-custom-data.json"],
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.rightClickBehavior": "copyPaste",
+  "terminal.integrated.enableMultiLinePasteWarning": false
 }

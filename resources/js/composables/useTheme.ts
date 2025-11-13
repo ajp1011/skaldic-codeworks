@@ -57,9 +57,7 @@ export function useTheme() {
       currentTheme.value = theme;
       
       console.log('Reloading page with new theme...');
-      const url = new URL(window.location.href);
-      url.searchParams.set('t', Date.now().toString());
-      window.location.href = url.toString();
+      window.location.reload();
     } catch (error) {
       console.error('Failed to update theme:', error);
       if (error instanceof Error && 'response' in error) {

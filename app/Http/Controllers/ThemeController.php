@@ -7,12 +7,14 @@ namespace App\Http\Controllers;
 use App\Actions\Theme\UpdateThemeAction;
 use App\Http\Requests\Theme\UpdateThemeRequest;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 
 class ThemeController
 {
     public function __construct(
         private readonly UpdateThemeAction $updateThemeAction
-    ) {}  
+    ) {
+    }
 
     public function update(UpdateThemeRequest $request): JsonResponse
     {
@@ -21,7 +23,7 @@ class ThemeController
 
         $updatedTheme = $this->updateThemeAction->execute(
             $themeSlug,
-            $request->user()
+            Auth::user()
         );
 
         return response()->json([
