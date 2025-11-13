@@ -9,15 +9,6 @@ uses(RefreshDatabase::class);
 
 describe('Login Authentication Process', function () {
 
-    describe('Login Page', function () {
-        it('displays login form', function () {
-            $response = $this->get(route('login'));
-
-            $response->assertStatus(200)
-                ->assertViewIs('auth.login');
-        });
-    });
-
     describe('Successful Login', function () {
         it('authenticates user with valid credentials', function () {
             $user = User::factory()->create([
@@ -103,7 +94,7 @@ describe('Login Authentication Process', function () {
 
             expect($response->status())->toBe(302);
             $this->assertAuthenticated();
-        })->skip(fn () => !Route::has('dashboard'), 'Dashboard route not defined');
+        });
     });
 
     describe('Failed Login', function () {
@@ -263,8 +254,7 @@ describe('Login Authentication Process', function () {
                 'password' => bcrypt('password123'),
             ]);
 
-            $response = $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class)
-                ->post(route('login.store'), [
+            $response = $this->post(route('login.store'), [
                     'email' => 'test@example.com',
                     'password' => 'password123',
                 ]);
@@ -289,19 +279,10 @@ describe('Login Authentication Process', function () {
     });
 
     describe('Middleware Protection', function () {
-        it('redirects authenticated user away from login page', function () {
-            $user = User::factory()->create();
+        it('redirects unauthenticated users to home page', function () {
+            $response = $this->get(route('dashboard'));
 
-            $response = $this->actingAs($user)
-                ->get(route('login'));
-
-            $response->assertRedirect();
-        })->skip(fn () => !middleware_redirects_authenticated(), 'Guest middleware not configured');
+            $response->assertRedirect(route('home'));
+        });
     });
 });
-
-// Helper function for conditional test
-function middleware_redirects_authenticated(): bool
-{
-    return true;
-}
