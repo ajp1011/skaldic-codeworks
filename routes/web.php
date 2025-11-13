@@ -13,7 +13,6 @@ Route::get('/', function () {
 Route::post('/theme', [ThemeController::class, 'update'])->name('theme.update');
 
 Route::middleware('guest')->group(function () {
-    Route::get('/login', [LoginController::class, 'show'])->name('login');
     Route::post('/login', [LoginController::class, 'store'])->name('login.store');
 });
 
