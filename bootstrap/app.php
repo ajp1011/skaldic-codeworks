@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 use App\Http\Middleware\ApplyUserTheme;
 use Illuminate\Foundation\Application;
-use Illuminate\Foundation\Configuration\{Exceptions, Middleware};
+use Illuminate\Foundation\Configuration\{
+    Exceptions,
+    Middleware
+};
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -16,6 +19,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [
             ApplyUserTheme::class,
         ]);
+
+        $middleware->redirectGuestsTo('/');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

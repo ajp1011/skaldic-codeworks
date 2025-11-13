@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
-use App\Actions\Auth\{LoginUserAction, LogoutUserAction};
+use App\Actions\Auth\{
+    LoginUserAction,
+    LogoutUserAction
+};
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 
 class LoginController
 {
@@ -15,11 +17,6 @@ class LoginController
         private readonly LoginUserAction $loginUserAction,
         private readonly LogoutUserAction $logoutUserAction
     ) {
-    }
-
-    public function show(): View
-    {
-        return view('auth.login');
     }
 
     public function store(LoginRequest $request): RedirectResponse
