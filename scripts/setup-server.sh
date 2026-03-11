@@ -169,3 +169,21 @@ cat << 'EOF' | sudo tee /etc/logrotate.d/skaldic-codeworks
 }
 EOF
 
+# Install Certbot and SSL renewal cron
+echo "Installing Certbot for SSL renewal..."
+sudo apt-get install -y certbot
+
+echo "Installing SSL renewal script and cron..."
+sudo tee /usr/local/bin/skaldic-renew-ssl.sh > /dev/null << 'CRONSCRIPT'
+#!/bin/bash
+set -e
+WEBROOT="/var/www/certbot"
+NGINX_CONTAINER="skaldic-codeworks-nginx-prod"
+certbot renew --webroot -w "$WEBROOT" --quiet
+docker exec "$NGINX_CONTAINER" nginx -s reload
+CRONSCRIPT
+sudo chmod +x /usr/local/bin/skaldic-renew-ssl.sh
+
+echo "0 3,15 * * * root /usr/local/bin/skaldic-renew-ssl.sh" | sudo tee /etc/cron.d/skaldic-ssl-renew
+echo "✓ SSL renewal cron installed (3:00 and 15:00 daily)"
+
