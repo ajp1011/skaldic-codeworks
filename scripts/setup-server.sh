@@ -169,21 +169,17 @@ cat << 'EOF' | sudo tee /etc/logrotate.d/skaldic-codeworks
 }
 EOF
 
-# Install Certbot and SSL renewal cron
+# Install Certbot (package includes twice-daily renewal timer/cron)
 echo "Installing Certbot for SSL renewal..."
 sudo apt-get install -y certbot
 
-echo "Installing SSL renewal script and cron..."
-sudo tee /usr/local/bin/skaldic-renew-ssl.sh > /dev/null << 'CRONSCRIPT'
+# Deploy hook: reload nginx when a cert is renewed (certbot runs renewal twice daily by default)
+echo "Installing certbot deploy hook to reload nginx after renewal..."
+sudo mkdir -p /etc/letsencrypt/renewal-hooks/deploy
+sudo tee /etc/letsencrypt/renewal-hooks/deploy/nginx-reload.sh > /dev/null << 'HOOKSCRIPT'
 #!/bin/bash
-set -e
-WEBROOT="/var/www/certbot"
-NGINX_CONTAINER="skaldic-codeworks-nginx-prod"
-certbot renew --webroot -w "$WEBROOT" --quiet
-docker exec "$NGINX_CONTAINER" nginx -s reload
-CRONSCRIPT
-sudo chmod +x /usr/local/bin/skaldic-renew-ssl.sh
-
-echo "0 3,15 * * * root /usr/local/bin/skaldic-renew-ssl.sh" | sudo tee /etc/cron.d/skaldic-ssl-renew
-echo "✓ SSL renewal cron installed (3:00 and 15:00 daily)"
+docker exec skaldic-codeworks-nginx-prod nginx -s reload
+HOOKSCRIPT
+sudo chmod +x /etc/letsencrypt/renewal-hooks/deploy/nginx-reload.sh
+echo "✓ Certbot deploy hook installed (nginx reloads after each renewal)"
 
