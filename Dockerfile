@@ -37,30 +37,19 @@ RUN chown -R developer:developer /var/www && \
     mkdir -p /var/www/.cache && \
     chown -R developer:developer /var/www/.cache
 
+# Avoid git "dubious ownership" warnings during composer scripts
+RUN git config --global --add safe.directory /var/www
+
 # Install Laravel if not already present
 RUN if [ ! -f composer.json ]; then \
         composer create-project laravel/laravel:^12.0 . --prefer-dist --no-interaction; \
     fi
 
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
+# Install PHP dependencies (dev image; runtime uses mounted volume)
+RUN composer install --optimize-autoloader --no-interaction
 
-# Install PEST for testing
-RUN composer require pestphp/pest --dev --no-interaction --with-all-dependencies
-
-# Install Node.js dependencies
-RUN npm install
-
-# Install frontend dependencies (Vue.js, TypeScript, Tailwind, etc.)
-RUN npm install vue@latest @vitejs/plugin-vue typescript @types/node tailwindcss postcss autoprefixer --save-dev
-
-# Generate Laravel application key only if not already set
-RUN if [ -z "$(grep 'APP_KEY=' .env | cut -d'=' -f2)" ] || [ "$(grep 'APP_KEY=' .env | cut -d'=' -f2)" = "" ]; then \
-        php artisan key:generate --no-interaction; \
-    fi
-
-# Build frontend assets
-RUN npm run build
+# Install Node dependencies and build frontend assets for the image layer
+RUN npm ci && npm run build
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
